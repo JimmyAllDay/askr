@@ -14,8 +14,16 @@
 }
 
 .LoginModal {
+  border: 3px black solid;
+  border-radius: 10px;
+  width: 50%;
+  height: 50%;
+  margin: auto;
+  padding: 20px;
+}
+.new_user_modal {
   border: 1px grey solid;
-  width: 80%;
+  width: 50%;
   height: 50%;
   margin: auto;
   padding: 10px;

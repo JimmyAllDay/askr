@@ -1,14 +1,35 @@
 import React from 'react';
 import LoginModal from './components/login/LoginModal';
+import NavBar from './components/main/NavBar';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
-import './App.css';
+import '../src/app/styles/App.css'
 
 
 function App() {
   return (
-    <div className="App">
-      <LoginModal/>
-    </div>
+    <Router>
+      <NavBar/>
+      <div className="App">
+      <Switch>
+          <Route
+            exact
+            path="/"
+            render={() => (
+              <React.Fragment>
+                <LoginModal/>
+              </React.Fragment>
+            )}
+          />
+        </Switch>
+
+      </div>
+    </Router>
   );
 }
 
