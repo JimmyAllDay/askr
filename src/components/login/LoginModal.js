@@ -6,7 +6,7 @@ import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 
 import logo from '../../assets/images/logo.svg';
-import './login-styles.css'
+import '../../app/styles/login-styles.css'
 
 
 export function LoginModal() {
@@ -24,12 +24,11 @@ export function LoginModal() {
                 <Row>
                     <img src={logo} className="App-logo" alt="logo" />
                 </Row>
-                <Row>
-                    <h2>Select or add a user to log in</h2>
+                <Row className='mt-4'>
+                    <h3>Select or add a user to log in</h3>
                 </Row>
                 <Row>
-                   <Col></Col>
-                    <Col className='d-flex justify-content-start'>
+                    <Col className='d-flex justify-content-center'>
                         <button 
                             className='login-select-btn' 
                             onClick={()=> add_new_user()}>
@@ -37,10 +36,8 @@ export function LoginModal() {
                         </button>
                     </Col>
                     <Col></Col>
-                    <Col></Col>
-                    <Col></Col>
                 </Row>
-                <Row className='add-select-user'>
+                <Row className='add-select-user mt-2'>
                     { !show 
                         ? <AddNewUser/> 
                         : <SelectUser />

@@ -1,13 +1,20 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import Button from 'react-bootstrap/Button'
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { userLoggedIn } from '../../features/users/loggedInSlice';
 
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 
 
 function SelectUser() {
+
+    const [userName, setUserName] = useState('')
+
     const users = useSelector(state => state.users);
+
+    const dispatch = useDispatch()
 
     const renderedUsers = users.map(user => (
         <option key={user.id} className="login-user" value={`${user.firstName} ${user.lastName}`}>
@@ -15,27 +22,40 @@ function SelectUser() {
         </option>
       ))
 
+    const onUserChanged = e => setUserName(e.target.value)
+
+    useEffect(() => console.log(userName), [userName]);
+
+    const saveLoggedInUser = () => {
+        if (userName) {
+          dispatch(
+            userLoggedIn({
+              userName
+            })
+          )
+    
+          setUserName('')
+        }
+      }
+
     return (
-        <div>
-        <Col>
+        <div className='d-flex flex-column align-items-centerm justify-content-between'>
             <Row>
-                <Col></Col>
-                <Col className='mt-5'>                 
-                    <select>
+                <Col className='mb-4'>             
+                    <select className='select-dropdown' onChange={(e)=> onUserChanged(e)}>
                         { renderedUsers }
-                        <option value={'add_new_user'} disabled={true}>Add New User</option>
                     </select>
                 </Col>
-                <Col></Col>
             </Row>
             <Row>
-                <Col></Col>
-                <Col className='mt-5'>                 
-                    <Button>Log In</Button> 
+                <Col>
+                    <Button 
+                        className='log-in-button' 
+                        onClick={()=> saveLoggedInUser()}>
+                        Log In
+                    </Button> 
                 </Col>
-                <Col></Col>    
             </Row>
-        </Col>
         </div>
     )
 }

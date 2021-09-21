@@ -3,6 +3,8 @@ import { useDispatch } from 'react-redux'
 import { nanoid } from '@reduxjs/toolkit'
 
 import Button from 'react-bootstrap/Button'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
 import { userAdded } from '../../features/users/usersSlice'
 
@@ -17,8 +19,6 @@ function AddNewUser() {
 
     const onFirstNameChanged = e => setFirstName(e.target.value)
     const onLastNameChanged = e => setLastName(e.target.value)
-
-    // useEffect(() => console.log(lastName), [lastName]);
 
     const saveNewUser = () => {
         if (firstName && lastName) {
@@ -36,12 +36,22 @@ function AddNewUser() {
       }
 
     return(
-        <div className='new_user_modal'>
-            <input type='text' placeholder='First name' onChange={(e) => onFirstNameChanged(e)}></input><br/><br/>
-            <input type='text' placeholder='Last name' onChange={(e)=> onLastNameChanged(e)}></input>
-            <br/>
-            <br/>
-            <Button onClick={()=> saveNewUser()}>Add User</Button>
+        <div className='d-flex flex-column align-items-centerm justify-content-between'>
+            <Row>
+                <Col>
+                    <input type='text' placeholder='First name' onChange={(e) => onFirstNameChanged(e)}></input>
+                </Col>
+            </Row>
+            <Row>
+                <Col>
+                    <input type='text' placeholder='Last name' onChange={(e)=> onLastNameChanged(e)}></input>
+                </Col>
+            </Row>
+            <Row>
+                <Col>
+                    <Button className='log-in-button' onClick={()=> saveNewUser()}>Add User</Button>
+                </Col>
+            </Row>
         </div>
     )
 

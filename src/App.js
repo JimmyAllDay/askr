@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 
 import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
 
 import '../src/app/styles/App.css'
 
@@ -18,14 +19,16 @@ function App() {
     <Router>
       <NavBar/>
       <div className="App">
-        <Container className=''>
+        <Container className='d-flex justify-content-center'>
           <Switch>
             <Route
               exact
               path="/"
               render={() => (
                 <React.Fragment>
-                  <LoginModal/>
+                  <Row className="">
+                    <LoginModal/>
+                  </Row>
                 </React.Fragment>
               )}
             />
