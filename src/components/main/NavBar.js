@@ -1,28 +1,24 @@
-import React, { useState } from 'react'
-import Nav from 'react-bootstrap/Nav'
-import Button from 'react-bootstrap/Button'
+import React from 'react'
 import {
     BrowserRouter as Router,
     Link
   } from "react-router-dom"
 
-function NavBar({ children }) {
-    const [show, toggleShow] = useState(false);
+import Nav from 'react-bootstrap/Nav'
+
+function NavBar() {
 
     return(
         <>
             <Nav className="justify-content-end bg-light">
                 <Nav.Item>
-                <Link to='/'>Home</Link>    {/* <Nav.Link></Nav.Link> */}
+                    <Link to='/'>Home</Link>
                 </Nav.Item>
                 <Nav.Item>
-                <Link to='/'>Link 1</Link>    {/* <Nav.Link></Nav.Link> */}
+                    <Link to='/'>Link 1</Link>  
                 </Nav.Item>
                 <Nav.Item>
-                <Link to='/'>Link 2</Link>    {/* <Nav.Link></Nav.Link> */}
-                </Nav.Item>
-                <Nav.Item>
-                    {/* {!show && <Button onClick={() => toggleShow(true)}>Login</Button>} */}
+                    <Link to='/'>Link 2</Link>  
                 </Nav.Item>
             </Nav>
         </>

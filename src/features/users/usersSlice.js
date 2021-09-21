@@ -1,15 +1,21 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = [
-  { id: '1', name: 'James Marshall' },
-  { id: '2', name: 'Hugh McKenzie'},
-  { id: '3', name: 'Gemma Nicholas'}
+  { id: '1', firstName: 'James', lastName: 'Marshall' },
+  { id: '2', firstName: 'Hugh', lastName: 'McKenzie'},
+  { id: '3', firstName: 'Gemma', lastName: 'Marshall'}
 ]
 
 const usersSlice = createSlice({
   name: 'users',
   initialState,
-  reducers: {}
+  reducers: {
+      userAdded(state, action) {
+        state.push(action.payload)
+    }
+  }
 })
+
+export const { userAdded } = usersSlice.actions
 
 export default usersSlice.reducer

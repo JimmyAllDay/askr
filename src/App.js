@@ -8,6 +8,8 @@ import {
   Link
 } from "react-router-dom";
 
+import Container from 'react-bootstrap/Container'
+
 import '../src/app/styles/App.css'
 
 
@@ -16,18 +18,19 @@ function App() {
     <Router>
       <NavBar/>
       <div className="App">
-      <Switch>
-          <Route
-            exact
-            path="/"
-            render={() => (
-              <React.Fragment>
-                <LoginModal/>
-              </React.Fragment>
-            )}
-          />
-        </Switch>
-
+        <Container className=''>
+          <Switch>
+            <Route
+              exact
+              path="/"
+              render={() => (
+                <React.Fragment>
+                  <LoginModal/>
+                </React.Fragment>
+              )}
+            />
+          </Switch>
+        </Container>
       </div>
     </Router>
   );

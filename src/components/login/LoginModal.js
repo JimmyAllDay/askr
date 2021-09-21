@@ -1,46 +1,54 @@
 import React, {useState} from 'react'
-import { useSelector } from 'react-redux';
-import Button from 'react-bootstrap/Button'
 import AddNewUser from './AddNewUser';
+import SelectUser from './SelectUser';
+
+import Col from 'react-bootstrap/Col'
+import Row from 'react-bootstrap/Row'
 
 import logo from '../../assets/images/logo.svg';
+import './login-styles.css'
+
 
 export function LoginModal() {
-    const users = useSelector(state => state.users);
-    const [show, toggleShow] = useState(false);
-    
-    const renderedUsers = users.map(user => (
-        <option key={user.id} className="user-name" value={user.name}>
-          {user.name}
-        </option>
-      ))
 
-      const add_new_user = () => toggleShow(true)
+    const [show, toggleShow] = useState(true);
+    
+    const add_new_user = () => toggleShow(!show)
 
     return(
         <div className='LoginModal'>
-            <img src={logo} className="App-logo" alt="logo" />
-            <br/>
-            <br/>
-            <h2>Select a user to log in</h2>
-            <br/>
-            <select>
-                { renderedUsers }
-                <option value={'add_new_user'} disabled={true}>Add New User</option>
-                //TODO: Finish AddNewUser functionality
-            </select>
-            <br/>
-            <br/>
-            {show && (
-                    <AddNewUser/>
-                    //TODO: Finish AddNewUser functionality
-                )
-            }
-            <br/>
-            <Button>Log In</Button>
+            <Col className=''>
+                <Row>
+                    <h1>Would You Rather?</h1>
+                </Row>
+                <Row>
+                    <img src={logo} className="App-logo" alt="logo" />
+                </Row>
+                <Row>
+                    <h2>Select or add a user to log in</h2>
+                </Row>
+                <Row>
+                   <Col></Col>
+                    <Col className='d-flex justify-content-start'>
+                        <button 
+                            className='login-select-btn' 
+                            onClick={()=> add_new_user()}>
+                                {!show ? 'Select User' : 'Add User'}
+                        </button>
+                    </Col>
+                    <Col></Col>
+                    <Col></Col>
+                    <Col></Col>
+                </Row>
+                <Row className='add-select-user'>
+                    { !show 
+                        ? <AddNewUser/> 
+                        : <SelectUser />
+                    }
+                </Row>
+            </Col>
         </div>
     )
-
 }
 
 
