@@ -10,7 +10,7 @@ import Row from 'react-bootstrap/Row'
 
 function SelectUser() {
 
-    const [userName, setUserName] = useState('')
+    const [userName, setUserName] = useState(null)
 
     const users = useSelector(state => state.users);
 
@@ -18,7 +18,7 @@ function SelectUser() {
 
     const renderedUsers = users.map(user => (
         <option key={user.id} className="login-user" value={`${user.firstName} ${user.lastName}`}>
-          {`${user.firstName} ${user.lastName}`}
+          <img src={user.avatar} alt={`${user.firstName} avatar`} /> {`${user.firstName} ${user.lastName}`}
         </option>
       ))
 
@@ -27,7 +27,7 @@ function SelectUser() {
     useEffect(() => console.log(userName), [userName]);
 
     const saveLoggedInUser = () => {
-        if (userName) {
+        if (userName ) {
           dispatch(
             userLoggedIn({
               userName
@@ -42,7 +42,13 @@ function SelectUser() {
         <div className='d-flex flex-column align-items-centerm justify-content-between'>
             <Row>
                 <Col className='mb-4'>             
-                    <select className='select-dropdown' onChange={(e)=> onUserChanged(e)}>
+                    <select 
+                      defaultValue="default"
+                      className='select-dropdown' 
+                      onChange={(e)=> onUserChanged(e)}>
+                        <option value="default" disabled>
+                          Select User
+                        </option>
                         { renderedUsers }
                     </select>
                 </Col>
