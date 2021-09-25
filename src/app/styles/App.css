@@ -2,4 +2,7 @@
   text-align: center;
 }
 
-
+.navBar {
+  height: 50px;
+  border-bottom: 1px rgb(75, 75, 75) solid;
+}

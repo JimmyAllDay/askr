@@ -1,10 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit'
-import avatar1 from '../../assets/images/avatar1.png'
 
 const initialState = [
-  { id: '1', firstName: 'James', lastName: 'Marshall', avatar: avatar1 },
-  { id: '2', firstName: 'Hugh', lastName: 'McKenzie', avatar: avatar1 },
-  { id: '3', firstName: 'Gemma', lastName: 'Nicholas', avatar: avatar1 }
+  { id: '1', firstName: 'James', lastName: 'Marshall' },
+  { id: '2', firstName: 'Hugh', lastName: 'McKenzie', },
+  { id: '3', firstName: 'Gemma', lastName: 'Nicholas', }
 ]
 
 const usersSlice = createSlice({

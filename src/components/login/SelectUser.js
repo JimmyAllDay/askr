@@ -1,7 +1,6 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState } from 'react'
 import Button from 'react-bootstrap/Button'
 import { useSelector, useDispatch } from 'react-redux';
-
 import { userLoggedIn } from '../../features/users/loggedInSlice';
 
 import Col from 'react-bootstrap/Col'
@@ -17,14 +16,15 @@ function SelectUser() {
     const dispatch = useDispatch()
 
     const renderedUsers = users.map(user => (
-        <option key={user.id} className="login-user" value={`${user.firstName} ${user.lastName}`}>
-          <img src={user.avatar} alt={`${user.firstName} avatar`} /> {`${user.firstName} ${user.lastName}`}
+        <option 
+          key={user.id} 
+          className="login-user" 
+          value={`${user.firstName} ${user.lastName}`}>
+            {`${user.firstName} ${user.lastName}`}
         </option>
       ))
 
     const onUserChanged = e => setUserName(e.target.value)
-
-    useEffect(() => console.log(userName), [userName]);
 
     const saveLoggedInUser = () => {
         if (userName ) {
@@ -39,7 +39,7 @@ function SelectUser() {
       }
 
     return (
-        <div className='d-flex flex-column align-items-centerm justify-content-between'>
+        <div className='d-flex flex-column align-items-center justify-content-between'>
             <Row>
                 <Col className='mb-4'>             
                     <select 

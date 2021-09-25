@@ -44,3 +44,12 @@
   .select-dropdown {
     height: 30px;
   }
+  .avatar-image-container {
+    width: 45px;
+    height: 45px;
+  }
+
+  .nav-avatar {
+    height: 100%;
+    width:auto;
+  }

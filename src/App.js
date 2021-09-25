@@ -9,7 +9,8 @@ import {
 } from "react-router-dom";
 
 import LoginModal from './components/login/LoginModal';
-import NavBar from './components/main/NavBar';
+import NavBar from './components/NavBar';
+import Home from './components/Home/Home'
 
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
@@ -34,8 +35,8 @@ useEffect(() => console.log(loggedInUser))
               path="/"
               render={() => (
                 <React.Fragment>
-                  <Row className="">
-                  {!loggedInUser ? <LoginModal/> : null}
+                  <Row className="w-75">
+                    {!loggedInUser ? <LoginModal /> : <Home/>}
                   </Row>
                 </React.Fragment>
               )}
