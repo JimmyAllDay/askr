@@ -22,8 +22,6 @@ function App() {
 
 const loggedInUser = useSelector(state => state.loggedInUser[0].userName)
 
-useEffect(() => console.log(loggedInUser))
-
   return (
     <Router>
       <NavBar/>
@@ -35,7 +33,7 @@ useEffect(() => console.log(loggedInUser))
               path="/"
               render={() => (
                 <React.Fragment>
-                  <Row className="w-75">
+                  <Row className="w-100 justify-content-center">
                     {!loggedInUser ? <LoginModal /> : <Home/>}
                   </Row>
                 </React.Fragment>

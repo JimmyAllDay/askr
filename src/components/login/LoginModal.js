@@ -16,8 +16,8 @@ export function LoginModal() {
     const add_new_user = () => toggleShow(!show)
 
     return(
-        <div className='LoginModal mt-2 w-50'>
-            <Col className=''>
+        <div className='mt-2 w-50 justify-content-center'>
+            <Col className='w-75 LoginModal'>
                 <Row>
                     <h1>Would You Rather?</h1>
                 </Row>
