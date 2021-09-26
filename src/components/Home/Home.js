@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react'
+import Question from './Question'
 
 import { useSelector } from 'react-redux'
 
-import Col from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
 import '../../app/styles/home-styles.css'
 
@@ -11,39 +12,59 @@ function Home() {
     const [answeredQs, setAnsweredQs ] = useState(false)
 
     const questionsData = useSelector(state => state.questions)
-    useEffect(()=> console.log(questionsData))
 
+    const answeredQuestions = questionsData.filter(question => question.answeredBy != null)
+    const mappedAnswered = answeredQuestions.map((question)=> {
+        return (
+            <Question
+                name={question.user}
+                question={question.questionOptionA}
+                answer={question.answeredBy}
+            />
+        )
+    })
+
+    const unAnsweredQuestions = questionsData.filter(question => question.answeredBy == null)
+    const mappedUnanswered = unAnsweredQuestions.map((question)=> {
+        return (
+            <Question
+                name={question.user}
+                question={question.questionOptionA}
+                answer={question.answeredBy}
+            />
+        )
+    })
+    
     return(
-        <Col className="flex justify-content-center w-75 mt-2">
-            <Row className="w-100 d-flex justify-content-center">
-                <Col className="d-flex w-100">
-                    <div 
-                        className="w-50 border home-button"
-                        onClick={() => setAnsweredQs(true)}
-                        >
-                        Answered Questions
-                    </div>
-                    <div 
-                        className="w-50 border home-button"
-                        onClick={() => setAnsweredQs(false)}
-                        >
-                        Unanswered Questions
-                    </div>
-                </Col>
-            </Row>
-            <Row className="">
-                {answeredQs === true 
-                    ?(<Col className="border border-dark">
-                            <h1>This is the answered questions page</h1>
-                    </Col>)
-                    :(<Col 
-                        className="border border-dark" 
-                        >
-                        <h1>This is the UNANSWERED questions page</h1>
-                    </Col>)
-                }
-            </Row>
-        </Col>
+        <div className="w-75 mt-2">
+                <Row className="d-flex justify-content-center w-100">
+                        <div 
+                            className="w-50 border home-button"
+                            onClick={() => setAnsweredQs(true)}
+                            >
+                            <h5>Answered Questions</h5>
+                        </div>
+                        <div 
+                            className="w-50 border home-button"
+                            onClick={() => setAnsweredQs(false)}
+                            >
+                            <h5>Unanswered Questions</h5>
+                        </div>    
+                </Row>
+                <Row className="w-100 border p-2">
+                        {answeredQs === true 
+                            ?(<Col 
+                                className="d-flex flex-column justify-content-center">
+                                {mappedAnswered}
+                            </Col>)
+                            :(<Col 
+                                className="d-flex flex-column justify-content-center" 
+                                >
+                                {mappedUnanswered}
+                            </Col>)
+                        }
+                </Row>
+        </div>
     )
 }
 

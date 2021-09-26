@@ -1,6 +1,5 @@
 import React from 'react'
 import {
-    BrowserRouter as Router,
     Link
   } from "react-router-dom"
 
@@ -37,10 +36,10 @@ function NavBar() {
                                 <Link to='/'>Home</Link>
                             </Nav.Item>
                                 <Nav.Item className="my-auto">
-                            <Link to='/'>New Question</Link>  
+                            <Link to='/new question'>New Question</Link>  
                             </Nav.Item>
                             <Nav.Item className="my-auto">
-                                <Link to='/'>Leader Board</Link>  
+                                <Link to='/leaderboard'>Leader Board</Link>  
                             </Nav.Item> 
                         </div>
                     : null}
@@ -55,7 +54,8 @@ function NavBar() {
                                 <div className='avatar-image-container my-auto d-none d-md-block ms-3 me-5'>
                                     <img
                                         className="nav-avatar" 
-                                        src={avatar2}>
+                                        src={avatar2}
+                                        alt="avatar">
                                     </img>
                                 </div>
                             </div>
