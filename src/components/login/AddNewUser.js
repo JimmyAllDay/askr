@@ -1,21 +1,18 @@
 import React, { useState } from 'react'
+
 import { useDispatch } from 'react-redux'
 import { nanoid } from '@reduxjs/toolkit'
+import { userAdded } from '../../features/users/usersSlice'
 
 import Button from 'react-bootstrap/Button'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
-import { userAdded } from '../../features/users/usersSlice'
-
-
-
 function AddNewUser() {
+    const dispatch = useDispatch()
 
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
-
-    const dispatch = useDispatch()
 
     const onFirstNameChanged = e => setFirstName(e.target.value)
     const onLastNameChanged = e => setLastName(e.target.value)
@@ -30,8 +27,8 @@ function AddNewUser() {
             })
           )
     
-          setFirstName('')
-          setLastName('')
+          setFirstName(null)
+          setLastName(null)
         }
       }
 

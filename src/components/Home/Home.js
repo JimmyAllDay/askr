@@ -1,10 +1,7 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import Question from './Question'
 
 import { useSelector } from 'react-redux'
-
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
 
 import '../../app/styles/home-styles.css'
 
@@ -17,9 +14,11 @@ function Home() {
     const mappedAnswered = answeredQuestions.map((question)=> {
         return (
             <Question
+                key={question.id}
                 name={question.user}
                 question={question.questionOptionA}
                 answer={question.answeredBy}
+                avatar={question.avatar}
             />
         )
     })
@@ -28,16 +27,18 @@ function Home() {
     const mappedUnanswered = unAnsweredQuestions.map((question)=> {
         return (
             <Question
+                key={question.id}
                 name={question.user}
                 question={question.questionOptionA}
                 answer={question.answeredBy}
+                avatar={question.avatar}
             />
         )
     })
     
     return(
         <div className="w-75 mt-2">
-                <Row className="d-flex justify-content-center w-100">
+                <div className="d-flex justify-content-center w-100">
                         <div 
                             className="w-50 border home-button"
                             onClick={() => setAnsweredQs(true)}
@@ -50,20 +51,13 @@ function Home() {
                             >
                             <h5>Unanswered Questions</h5>
                         </div>    
-                </Row>
-                <Row className="w-100 border p-2">
-                        {answeredQs === true 
-                            ?(<Col 
-                                className="d-flex flex-column justify-content-center">
-                                {mappedAnswered}
-                            </Col>)
-                            :(<Col 
-                                className="d-flex flex-column justify-content-center" 
-                                >
-                                {mappedUnanswered}
-                            </Col>)
-                        }
-                </Row>
+                </div>
+                <div className="w-100 border p-2">           
+                    <div 
+                        className="d-flex flex-column justify-content-center">
+                            {answeredQs === true ? mappedAnswered : mappedUnanswered}
+                    </div>
+                </div>
         </div>
     )
 }

@@ -1,4 +1,4 @@
-import React, {useState } from 'react'
+import React, { useState } from 'react'
 import Button from 'react-bootstrap/Button'
 import { useSelector, useDispatch } from 'react-redux';
 import { userLoggedIn } from '../../features/users/loggedInSlice';
@@ -8,10 +8,9 @@ import Row from 'react-bootstrap/Row'
 
 
 function SelectUser() {
-
-    const [userName, setUserName] = useState(null)
-
     const users = useSelector(state => state.users);
+
+    const [user, setUser] = useState(null)
 
     const dispatch = useDispatch()
 
@@ -19,22 +18,26 @@ function SelectUser() {
         <option 
           key={user.id} 
           className="login-user" 
-          value={`${user.firstName} ${user.lastName}`}>
+          value={`${user.id}`}>
             {`${user.firstName} ${user.lastName}`}
         </option>
       ))
 
-    const onUserChanged = e => setUserName(e.target.value)
+    const onUserChanged = e => {
+      const userId = e.target.value;
+      const user = users.find(u => u.id === userId);
+      setUser(user)
+    }
 
     const saveLoggedInUser = () => {
-        if (userName ) {
+        if (user ) {
           dispatch(
             userLoggedIn({
-              userName
+              user
             })
           )
     
-          setUserName('')
+          setUser(null)
         }
       }
 

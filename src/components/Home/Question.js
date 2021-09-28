@@ -1,10 +1,7 @@
 import React from 'react'
 
-import Col from 'react-bootstrap/Col'
-import Row from 'react-bootstrap/Row'
 import Button from 'react-bootstrap/Button'
 
-import avatar4 from '../../assets/images/avatar4.png'
 
 function Question(props) {
 
@@ -17,8 +14,8 @@ function Question(props) {
                 <div className="border">
                     <div className="question-avatar-container p-2">
                         <img 
-                            src={avatar4} 
-                            alt="avatar 4" 
+                            src={props.avatar}
+                            alt="avatar" 
                             className="question-avatar"
                             >
                         </img>

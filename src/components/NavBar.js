@@ -1,26 +1,23 @@
 import React from 'react'
-import {
-    Link
-  } from "react-router-dom"
 
 import { useSelector, useDispatch } from 'react-redux';
-import { userLoggedIn } from '../features/users/loggedInSlice';
+import { userLoggedOut } from '../features/users/loggedInSlice';
+
+import { Link } from "react-router-dom"
 
 import Nav from 'react-bootstrap/Nav'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 
-import avatar2 from '../assets/images/avatar2.png'
-
 function NavBar() {
 
-    const loggedInUser = useSelector(state => state.loggedInUser[0].userName)
-
+    const loggedInUser = useSelector(state => state.loggedInUser)
+    
     const dispatch = useDispatch()
 
     const logOut = () => {
         dispatch(
-            userLoggedIn(null)
+            userLoggedOut()
         )
     }
 
@@ -45,16 +42,16 @@ function NavBar() {
                     : null}
                 </Col>
                 <Col className="d-flex">
-                    {loggedInUser 
-                        ? <div className="d-flex w-100 justify-content-end md-ms-5">
+                    {loggedInUser &&
+                         (<div className="d-flex w-100 justify-content-end md-ms-5">
                             <div className="d-flex">
                                 <div className="d-none d-lg-block my-auto">
-                                    {`Welcome, ${loggedInUser.split(' ')[0]}`}
+                                    {loggedInUser[0] && (`Welcome, ${loggedInUser[0].user.firstName}`)}
                                 </div>
                                 <div className='avatar-image-container my-auto d-none d-md-block ms-3 me-5'>
                                     <img
                                         className="nav-avatar" 
-                                        src={avatar2}
+                                        src={loggedInUser[0].user.avatar}
                                         alt="avatar">
                                     </img>
                                 </div>
@@ -64,8 +61,7 @@ function NavBar() {
                                 onClick={()=>logOut()}>
                                 Log Out
                             </Button>
-                        </div> 
-                        : null}
+                        </div>) }
                 </Col>
             </Nav>
     )

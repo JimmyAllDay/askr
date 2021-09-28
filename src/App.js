@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector} from 'react-redux';
+import '../src/assets/images/avatar4.png'
 
 import {
   BrowserRouter as Router,
@@ -19,7 +20,7 @@ import '../src/app/styles/App.css'
 
 function App() {
 
-const loggedInUser = useSelector(state => state.loggedInUser[0].userName)
+const loggedInUser = useSelector(state => state.loggedInUser)
 
   return (
     <Router>
@@ -28,13 +29,13 @@ const loggedInUser = useSelector(state => state.loggedInUser[0].userName)
         <Container fluid className='d-flex justify-content-center'>
           <Switch>
             <Route exact path="/">
-              {!loggedInUser ? <LoginModal /> : <Home/>}
+              {loggedInUser ? <Home/> : <LoginModal /> }
             </Route>
             <Route exact path="/new question">
-              <NewQuestion/>
+              {loggedInUser ? <NewQuestion/> : <LoginModal /> }
             </Route>
             <Route path="/leaderboard">
-              <Leaderboard/>
+              {loggedInUser ? <Leaderboard/> : <LoginModal /> }
             </Route>
           </Switch>
         </Container>
