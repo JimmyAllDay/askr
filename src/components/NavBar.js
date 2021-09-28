@@ -46,12 +46,12 @@ function NavBar() {
                          (<div className="d-flex w-100 justify-content-end md-ms-5">
                             <div className="d-flex">
                                 <div className="d-none d-lg-block my-auto">
-                                    {loggedInUser[0] && (`Welcome, ${loggedInUser[0].user.firstName}`)}
+                                    {loggedInUser && (`Welcome, ${loggedInUser[0].user.firstName}`)}
                                 </div>
                                 <div className='avatar-image-container my-auto d-none d-md-block ms-3 me-5'>
                                     <img
                                         className="nav-avatar" 
-                                        src={loggedInUser[0].user.avatar}
+                                        src={loggedInUser && (loggedInUser[0].user.avatar)}
                                         alt="avatar">
                                     </img>
                                 </div>

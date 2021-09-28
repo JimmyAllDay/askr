@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { useSelector, useDispatch } from 'react-redux';
 import { nanoid } from '@reduxjs/toolkit'
@@ -10,8 +10,12 @@ function NewQuestion() {
     const user = useSelector(state=>state.loggedInUser[0].user)
     const dispatch = useDispatch()
 
-    const [optionA, setOptionA] = useState(null)
-    const [optionB, setOptionB] = useState(null)
+    const [optionA, setOptionA] = useState('')
+    const [optionB, setOptionB] = useState('')
+    const [placeholder, setPlaceHolder] = useState({
+        a: `Start scattin' and beboppin' all over Costanza`,
+        b:`Attend Rage-A-Holics`
+    })
 
     const handleChangeOptionA = (e) => setOptionA(e.target.value)
     const handleChangeOptionB =(e) => setOptionB(e.target.value)
@@ -20,7 +24,7 @@ function NewQuestion() {
 
         const date = new Date().toString()
 
-        if (optionA && optionB ) {
+        if (optionA !== '' && optionB !== '') {
             dispatch(
               questionAdded({
                 id: nanoid(), 
@@ -33,10 +37,16 @@ function NewQuestion() {
               })
             )
       
-            setOptionA(null)
-            setOptionB(null)
+            setOptionA('')
+            setOptionB('')
+            setPlaceHolder({
+                a: `Question added!`,
+                b:`Ask another question!`
+                }
+            )
           }
     }
+    useEffect(()=>console.log(optionA, optionB))
 
     return (
         <div className="w-75 mt-2 d-flex flex-column">
@@ -60,6 +70,7 @@ function NewQuestion() {
                                     >
                                 </img>
                             </div>
+                            <p>Hugh Mckenzie</p>
                         </div>
                         <div className="border w-100 d-flex flex-column">
                         <div className="border d-flex justify-content-center">
@@ -68,23 +79,25 @@ function NewQuestion() {
                             <div className="border d-grid p-2 w-75 align-self-center me-2">
                                
                                 <input 
-                                    placeholder="Bebop and scat all over Costanza" 
+                                    className={"notice"}
+                                    placeholder={placeholder.a} 
                                     onChange={(e)=> handleChangeOptionA(e)}
+                                    value={optionA}
                                 />
                             </div>
                             <h4>or..</h4>
                             <div className="border d-grid p-2 w-75 align-self-center me-2">
                                 <input 
-                                    placeholder="Attend Rage-A-Holics"
+                                    className={null}
+                                    placeholder={placeholder.b}
                                     onChange={(e)=> handleChangeOptionB(e)}
+                                    value={optionB}
                                 />
                             </div>
                             <div className="p-3 border d-grid gap-2">
                                 <Button 
                                     className="bt-lg"
-                                    onClick={optionA && optionB && (
-                                        ()=> createNewQuestion(user)
-                                    )}
+                                    onClick={()=> createNewQuestion(user)}
                                     >Submit</Button>
                             </div>
                         </div>
