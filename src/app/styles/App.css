@@ -1,3 +1,7 @@
+* {
+  background-color: #f4f1de;
+  color: #3d405b;
+}
 
 /*
   Colour palette
@@ -14,4 +18,8 @@
 .navBar {
   height: 50px;
   border-bottom: 1px rgb(75, 75, 75) solid;
+}
+
+.active {
+  color: #81b29a;
 }
