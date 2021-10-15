@@ -32,7 +32,7 @@ const initialState = [
     avatar: avatar1,
     questionOptionA: "Go for a walk in the sun",
     questionOptionB: "Eat nutritious food",
-    answers: [{ id: "2", Answer: "Eat nutritious food" }],
+    answers: [{ id: "2", answer: "Eat nutritious food" }],
   },
 ];
 

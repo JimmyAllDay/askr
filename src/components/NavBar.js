@@ -18,9 +18,9 @@ function NavBar(props) {
 
   return (
     <div>
-      <Nav className="bg-light navBar" style={{ backgroundColor: "#E07A5f" }}>
+      <Nav className="bg-light navBar">
         <Col className="d-flex justify-content-center">
-          <h5>Would you Rather?</h5>
+          <h5 className="my-auto">Would you Rather?</h5>
         </Col>
         <Col className="d-flex">
           {props.loggedIn && (

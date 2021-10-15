@@ -40,12 +40,12 @@ function SelectUser(props) {
   };
 
   return (
-    <div className="d-flex flex-column align-items-center justify-content-between">
-      <Row>
-        <Col className="mb-4">
+    <div className="d-flex flex-column align-items-center justify-content-between login-background">
+      <Row className="login-background">
+        <Col className="mb-4 login-background">
           <select
             defaultValue="default"
-            className="select-dropdown"
+            className="select-dropdown mt-3"
             onChange={(e) => onUserChanged(e)}
           >
             <option value="default" disabled>
@@ -55,9 +55,12 @@ function SelectUser(props) {
           </select>
         </Col>
       </Row>
-      <Row>
-        <Col>
-          <Button className="log-in-button" onClick={() => saveLoggedInUser()}>
+      <Row className="login-background">
+        <Col className="login-background">
+          <Button
+            className="log-in-button login-background"
+            onClick={() => saveLoggedInUser()}
+          >
             Log In
           </Button>
         </Col>

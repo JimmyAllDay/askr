@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { nanoid } from "@reduxjs/toolkit";
 import { questionAdded } from "../../features/questions/questionsSlice.js";
+import { userUpdated } from "../../features/users/usersSlice.js";
 
 import { Redirect } from "react-router-dom";
 
@@ -10,6 +11,7 @@ import Button from "react-bootstrap/Button";
 
 function NewQuestion() {
   const user = useSelector((state) => state.loggedInUser);
+  console.log(user);
   const dispatch = useDispatch();
 
   const [redirect, setRedirect] = useState(false);
@@ -38,6 +40,14 @@ function NewQuestion() {
           answers: [{ id: "", answer: "" }],
         })
       );
+      dispatch(
+        userUpdated({
+          id: user.id,
+          questionsAsked: 1,
+          questionsAnswered: 0,
+          totalPoints: 1,
+        })
+      );
       setOptionA("");
       setOptionB("");
       setRedirect(true);
@@ -52,7 +62,7 @@ function NewQuestion() {
           <h5>New Question</h5>
         </div>
       </div>
-      <div className="w-100 border p-2 bg-light d-flex flex-column">
+      <div className="w-100 border p-2 d-flex flex-column">
         <div className="border d-flex justify-content-start">
           <h3 className="ms-4 my-auto p-2">Finish the question...</h3>
         </div>

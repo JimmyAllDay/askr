@@ -4,6 +4,9 @@
   margin: auto;
   padding: 20px;
 }
+.login-background {
+  background-color: #999ac6;
+}
 
 .App-logo {
   height: 25vmin;
@@ -43,7 +46,6 @@
 }
 
 .login-select-btn {
-  all: unset;
   color: cornflowerblue;
 }
 .add-select-user {
@@ -55,7 +57,11 @@
 }
 
 .select-dropdown {
-  height: 30px;
+  height: 40px;
+  width: 250px;
+  background-color: white;
+  font-size: 16pt;
+  border-radius: 3pt;
 }
 .avatar-image-container {
   width: 45px;

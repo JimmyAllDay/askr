@@ -27,7 +27,7 @@ function App() {
   return (
     <Router>
       {state.loggedInUser.loggedIn ? null : <Redirect to="/" />}
-      <div className="App">
+      <div className="App h-100">
         <NavBar {...state.loggedInUser} />
         <Container fluid className="d-flex justify-content-center">
           <Switch>
@@ -36,7 +36,7 @@ function App() {
             </Route>
 
             <Route path="/leaderboard">
-              <Leaderboard />
+              <Leaderboard {...state} />
             </Route>
 
             <Route exact path="/answer/:id">
@@ -44,7 +44,7 @@ function App() {
             </Route>
 
             <Route exact path="/questions/:id">
-              <Poll props={state.questions} />
+              <Poll props={state.questions} user={state.loggedInUser} />
             </Route>
 
             <Route exact path="/">

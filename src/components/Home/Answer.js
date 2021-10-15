@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import { useDispatch } from "react-redux";
 import { questionUpdated } from "../../features/questions/questionsSlice";
+import { userUpdated } from "../../features/users/usersSlice";
 
 import { useParams, Redirect } from "react-router-dom";
 
@@ -29,6 +30,14 @@ function Answer(props) {
           answers: newAnswers,
         })
       );
+      dispatch(
+        userUpdated({
+          id: user.id,
+          questionsAsked: 0,
+          questionsAnswered: 1,
+          totalPoints: 1,
+        })
+      );
 
       setAnswer("");
       setRedirect(true);
@@ -37,7 +46,7 @@ function Answer(props) {
 
   return (
     <div className="w-75 mt-2">
-      {redirect ? <Redirect to="/" /> : null}
+      {redirect ? <Redirect to={`/questions/${id}`} /> : null}
       <div className="d-flex justify-content-center w-100">
         <div className="w-100 border home-button">
           <h5>Answer</h5>
