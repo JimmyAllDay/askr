@@ -29,7 +29,7 @@ function Leaderboard(props) {
           <h5>Leader Board</h5>
         </div>
       </div>
-      <div className="w-100 border p-2 d-flex flex-column">{mapRankings}</div>
+      {mapRankings}
     </div>
   );
 }

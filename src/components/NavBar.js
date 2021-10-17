@@ -18,36 +18,49 @@ function NavBar(props) {
 
   return (
     <div>
-      <Nav className="bg-light navBar">
-        <Col className="d-flex justify-content-center">
-          <h5 className="my-auto">Would you Rather?</h5>
+      <Nav className="nav-bar">
+        <Col className="d-flex justify-content-center nav-col">
+          <h5 className="my-auto nav-title title-brand">Would you Rather?</h5>
         </Col>
-        <Col className="d-flex">
+        <Col className="d-flex nav-col">
           {props.loggedIn && (
-            <div className="w-100 d-flex justify-content-around">
-              <Nav.Item className="my-auto">
-                <NavLink to="/" exact activeClassName="active">
+            <div className="w-100 d-flex justify-content-around h-75 my-auto">
+              <Nav.Item className="">
+                <NavLink
+                  to="/"
+                  exact
+                  activeClassName="active"
+                  className="nav-link"
+                >
                   Home
                 </NavLink>
               </Nav.Item>
-              <Nav.Item className="my-auto">
-                <NavLink to="/add" activeClassName="active">
+              <Nav.Item className="">
+                <NavLink
+                  to="/add"
+                  activeClassName="active"
+                  className="nav-link"
+                >
                   New Question
                 </NavLink>
               </Nav.Item>
-              <Nav.Item className="my-auto">
-                <NavLink to="/leaderboard" activeClassName="active">
+              <Nav.Item className="">
+                <NavLink
+                  to="/leaderboard"
+                  activeClassName="active"
+                  className="nav-link"
+                >
                   Leader Board
                 </NavLink>
               </Nav.Item>
             </div>
           )}
         </Col>
-        <Col className="d-flex">
+        <Col className="d-flex nav-col">
           {props.loggedIn && (
-            <div className="d-flex w-100 justify-content-end md-ms-5">
+            <div className="d-flex justify-content-end md-ms-5">
               <div className="d-flex">
-                <div className="d-none d-lg-block my-auto">
+                <div className="d-none d-lg-block my-auto ms-4 welcome-container h-50">
                   {props.loggedIn && `Welcome, ${props.firstName}`}
                 </div>
                 <div className="avatar-image-container my-auto d-none d-md-block ms-3 me-5">
@@ -58,7 +71,10 @@ function NavBar(props) {
                   ></img>
                 </div>
               </div>
-              <Button className="mx-3 h-75 my-auto" onClick={() => logOut()}>
+              <Button
+                className="mx-4 h-75 my-auto global-button"
+                onClick={() => logOut()}
+              >
                 Log Out
               </Button>
             </div>

@@ -6,7 +6,8 @@ import avatar4 from "../../assets/images/avatar4.png";
 const initialState = [
   {
     key: "N2X29qinbkkLxBEXLzT51",
-    dateAsked: "August 02, 21",
+    dateAsked:
+      "Fri Oct 15 2021 20:11:30 GMT+1100 (Australian Eastern Daylight Time)",
     asker: "James Marshall",
     avatar: avatar4,
     questionOptionA: "Meditate",
@@ -15,7 +16,8 @@ const initialState = [
   },
   {
     key: "H4l3YteiblpYlTNXLzM76",
-    dateAsked: "August 22, 21",
+    dateAsked:
+      "Fri Oct 15 2021 20:12:30 GMT+1100 (Australian Eastern Daylight Time)",
     asker: "Hugh McKenzie",
     avatar: avatar2,
     questionOptionA: "Eat a bean",
@@ -27,7 +29,8 @@ const initialState = [
   },
   {
     key: "G6X3XqatibbLqBETLzK38",
-    dateAsked: "October 04, 21",
+    dateAsked:
+      "Fri Oct 15 2021 20:13:30 GMT+1100 (Australian Eastern Daylight Time)",
     asker: "Gemma Nicholas",
     avatar: avatar1,
     questionOptionA: "Go for a walk in the sun",

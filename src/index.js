@@ -9,6 +9,8 @@ import * as serviceWorker from "./serviceWorker";
 // Importing the Bootstrap CSS
 import "bootstrap/dist/css/bootstrap.min.css";
 
+import "../src/app/styles/App.css";
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>

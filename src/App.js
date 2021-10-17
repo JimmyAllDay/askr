@@ -3,10 +3,11 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 import {
-  BrowserRouter as Router,
+  BrowserRouter,
   Switch,
   Route,
   Redirect,
+  // History,
 } from "react-router-dom";
 
 import LoginModal from "./components/login/LoginModal";
@@ -16,17 +17,18 @@ import NewQuestion from "./components/NewQuestion/NewQuestion";
 import Leaderboard from "./components/Leaderboard.js/Leaderboard";
 import Answer from "./components/Home/Answer";
 import Poll from "./components/Home/Poll";
+import NotFound from "./components/Home/NotFound";
 
 import Container from "react-bootstrap/Container";
 
-import "../src/app/styles/App.css";
-
 function App() {
   const state = useSelector((state) => state);
+  const loggedIn = state.loggedInUser.loggedIn;
+  console.log(loggedIn);
 
   return (
-    <Router>
-      {state.loggedInUser.loggedIn ? null : <Redirect to="/" />}
+    <BrowserRouter>
+      {loggedIn ? null : <Redirect to="/" />}
       <div className="App h-100">
         <NavBar {...state.loggedInUser} />
         <Container fluid className="d-flex justify-content-center">
@@ -48,16 +50,19 @@ function App() {
             </Route>
 
             <Route exact path="/">
-              {state.loggedInUser.loggedIn ? (
+              {loggedIn ? (
                 <Home {...state} />
               ) : (
                 <LoginModal props={state.users} />
               )}
             </Route>
+            <Route>
+              <NotFound />
+            </Route>
           </Switch>
         </Container>
       </div>
-    </Router>
+    </BrowserRouter>
   );
 }
 

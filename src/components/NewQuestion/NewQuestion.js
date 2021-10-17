@@ -11,7 +11,6 @@ import Button from "react-bootstrap/Button";
 
 function NewQuestion() {
   const user = useSelector((state) => state.loggedInUser);
-  console.log(user);
   const dispatch = useDispatch();
 
   const [redirect, setRedirect] = useState(false);

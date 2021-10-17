@@ -18,9 +18,11 @@ function Question(props) {
   sortLinks();
 
   return (
-    <div className="w-100 border mb-2">
-      <div className="border d-flex justify-content-start">
-        <h3 className="ms-4 my-auto p-2">{props.name} asks:</h3>
+    <div className="w-100 border mb-2 q-border">
+      <div className="border d-flex justify-content-start q-header">
+        <h3 className="ms-4 my-auto p-2 q-header-username">
+          {props.name} asks:
+        </h3>
       </div>
       <div className="d-flex justify-content-start">
         <div className="border">
@@ -40,11 +42,13 @@ function Question(props) {
             <h4>{props.question}</h4>
             <h5>or...</h5>
           </div>
-          <div className="p-3 border d-grid gap-2">
-            <Link to={sortLinks()}>
-              {sortLinks().includes("question") != "" ? "Poll" : "Answer"}
-            </Link>
-          </div>
+
+          <Link
+            to={sortLinks()}
+            className="q-button-link p-2 border d-grid gap-2 m-3 q-button-link"
+          >
+            {sortLinks().includes("question") != "" ? "Poll" : "Answer"}
+          </Link>
         </div>
       </div>
     </div>

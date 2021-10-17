@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import Question from "./Question";
 
-import "../../app/styles/home-styles.css";
-
 function Home(props) {
   const [answeredQs, setAnsweredQs] = useState(false);
 
   const questionsData = props.questions.slice().sort(function (a, b) {
     return b.dateAsked.localeCompare(a.dateAsked);
   });
+  console.log(questionsData);
   const userData = props.loggedInUser;
   const userId = userData.id;
 
@@ -54,19 +53,27 @@ function Home(props) {
   });
 
   return (
-    <div className="w-75 mt-2">
+    <div className="w-75 mt-2 home-menu-border">
       <div className="d-flex justify-content-center w-100">
         <div
-          className="w-50 border home-button"
+          className={`w-50 border home-button home-menu-btn ${
+            answeredQs ? "active-home-qs-menu-btn" : ""
+          }`}
           onClick={() => setAnsweredQs(true)}
         >
-          <h5>Answered Questions</h5>
+          <h5 className={`mt-2 ${answeredQs ? "active-home-qs-menu-btn" : ""}`}>
+            Answered Questions
+          </h5>
         </div>
         <div
-          className="w-50 border home-button"
+          className={`w-50 border home-button home-menu-btn ${
+            answeredQs ? "" : "active-home-qs-menu-btn"
+          }`}
           onClick={() => setAnsweredQs(false)}
         >
-          <h5>Unanswered Questions</h5>
+          <h5 className={`mt-2 ${answeredQs ? "" : "active-home-qs-menu-btn"}`}>
+            Unanswered Questions
+          </h5>
         </div>
       </div>
       <div className="w-100 border p-2">

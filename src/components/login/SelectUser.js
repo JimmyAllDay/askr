@@ -58,7 +58,7 @@ function SelectUser(props) {
       <Row className="login-background">
         <Col className="login-background">
           <Button
-            className="log-in-button login-background"
+            className="global-button login-button"
             onClick={() => saveLoggedInUser()}
           >
             Log In

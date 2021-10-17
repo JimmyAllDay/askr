@@ -1,6 +1,6 @@
 #Would you rather?
 
-This app is the second major project within the Udacity React Nanodegree. It provides users with a fun way to interact by asking silly hypothetical questions in the format, Would You Rather? Answers are presented as two options. Users can create new questions and vote on their preferred responses. The project uses React with hooks and Redux, and various other packages.
+This app is the second major project within the Udacity React Nanodegree. It provides users with a fun way to interact by asking hypothetical questions in the format, Would You Rather? Answers are presented as two options. Users can create new questions and vote on their preferred responses. The project uses React with hooks, Redux, React Router and various other packages.
 
 ##Instructions
 

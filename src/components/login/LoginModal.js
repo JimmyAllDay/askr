@@ -5,19 +5,17 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 
 import logo from "../../assets/images/logo.svg";
-import "../../app/styles/login-styles.css";
 
 export function LoginModal(props) {
   // TODO: Add functionality for creating new users
-
   return (
-    <div className="mt-2 w-50 justify-content-center login-modal">
+    <div className="mt-5 w-50 justify-content-center login-modal">
       <Col className="w-75 LoginModal login-background">
         <Row className="login-background">
-          <h1 className="login-background">Would You Rather?</h1>
+          <h1 className="login-background title-brand">Would You Rather?</h1>
         </Row>
         <Row className="login-background">
-          <div className="mt-4 login-background">
+          <div className="mt-4 login-background logo-container">
             <img
               style={{ borderRadius: "50px" }}
               src={logo}
