@@ -23,10 +23,10 @@ function Leaderboard(props) {
   });
 
   return (
-    <div className="w-75 mt-2 d-flex flex-column">
+    <div className="w-75 mt-2 d-flex flex-column leaderboard-border pb-2">
       <div className="d-flex justify-content-center w-100">
-        <div className="w-100 border">
-          <h5>Leader Board</h5>
+        <div className="w-100 leaderboard-header">
+          <h5 className="mt-2 leaderboard-header-background">Leader Board</h5>
         </div>
       </div>
       {mapRankings}

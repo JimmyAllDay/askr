@@ -18,7 +18,7 @@ function Question(props) {
   sortLinks();
 
   return (
-    <div className="w-100 border mb-2 q-border">
+    <div className="w-100 border mt-2 q-border border border-alert">
       <div className="border d-flex justify-content-start q-header">
         <h3 className="ms-4 my-auto p-2 q-header-username">
           {props.name} asks:

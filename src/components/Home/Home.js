@@ -76,7 +76,7 @@ function Home(props) {
           </h5>
         </div>
       </div>
-      <div className="w-100 border p-2">
+      <div className="w-100 border pb-2 px-2">
         <div className="d-flex flex-column justify-content-center">
           {answeredQs === true ? mappedAnswered : mappedUnanswered}
         </div>
