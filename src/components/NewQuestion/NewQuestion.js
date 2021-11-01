@@ -54,62 +54,53 @@ function NewQuestion() {
   };
 
   return (
-    <div className="w-75 mt-2 d-flex flex-column">
+    // Container
+    <div className="w-50 mt-5 main-col home-background d-flex flex-column">
       {redirect && <Redirect to="/" />}
-      <div className="d-flex justify-content-center w-100 border new-q-header">
-        <div className="w-100 mt-2 new-q-header-background">
-          <h5 className="new-q-header-background">New Question</h5>
-        </div>
+      <div className="w-100 main-header-background new-q-header-border">
+        <h6 className="new-q-header-background my-auto">New Question</h6>
       </div>
-      <div className="w-100 new-q-border p-2 d-flex flex-column">
-        <div className="border d-flex justify-content-start new-q-inner-header">
-          <h3 className="ms-4 my-auto p-2 new-q-inner-header-title">
-            Finish the question...
-          </h3>
-        </div>
-
-        <div className="d-flex justify-content-start new-q-border-light">
-          <div className="border">
-            <div className="question-avatar-container p-2">
+      <div className="p-2 home-background">
+        {/* Card Border */}
+        <div className="card-border-background">
+          {/* Card row 1 */}
+          <div className="d-flex flex-row q-header ">
+            <div className="question-avatar-container">
               <img
                 src={user.avatar}
                 alt="avatar"
-                className="question-avatar"
+                className="question-avatar m-1"
               ></img>
             </div>
-            <div className="mt-2">
-              <h5>{`${user.firstName} ${user.lastName}`}</h5>
-            </div>
+            <h6 className="ms-3 mt-2 q-card-text me-auto">{`${user.firstName}, finish the question:`}</h6>
           </div>
-          <div className="border w-100 d-flex flex-column">
-            <div className="border d-flex justify-content-center">
-              <h3 className="p-2">Would you rather?</h3>
-            </div>
-            <div className="d-grid p-2 w-75 align-self-center me-2 mt-1">
-              <input
-                className="new-q-input"
-                placeholder={placeholder.a}
-                onChange={(e) => handleChangeOptionA(e)}
-                value={optionA}
-              />
-            </div>
-            <h4 className="mt-2">or..</h4>
-            <div className="d-grid p-2 w-75 align-self-center me-2 mb-1">
-              <input
-                className="new-q-input"
-                placeholder={placeholder.b}
-                onChange={(e) => handleChangeOptionB(e)}
-                value={optionB}
-              />
-            </div>
-            <div className="p-3 border d-grid gap-2">
-              <Button
-                className="new-q-button"
-                onClick={() => createNewQuestion(user)}
-              >
-                Submit
-              </Button>
-            </div>
+          {/* Card row 2*/}
+          <div className="">
+            <h6 className="q-card-text my-auto mb-1">Would you rather?</h6>
+          </div>
+
+          {/* Card row 3 */}
+          <div className="q-card-text d-flex flex-column  w-75 mx-auto p-2">
+            <input
+              className="new-q-input mt-2"
+              placeholder={placeholder.a}
+              onChange={(e) => handleChangeOptionA(e)}
+              value={optionA}
+            />
+            <h6 className="q-card-text mt-2">or...</h6>
+            <input
+              className="new-q-input"
+              placeholder={placeholder.b}
+              onChange={(e) => handleChangeOptionB(e)}
+              value={optionB}
+            />
+
+            <Button
+              className="global-button mx-auto mt-2"
+              onClick={() => createNewQuestion(user)}
+            >
+              Submit
+            </Button>
           </div>
         </div>
       </div>

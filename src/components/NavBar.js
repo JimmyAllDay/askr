@@ -20,7 +20,7 @@ function NavBar(props) {
     <div>
       <Nav className="nav-bar">
         <Col className="d-flex justify-content-center nav-col">
-          <h5 className="my-auto nav-title title-brand">Would you Rather?</h5>
+          <h5 className="my-auto nav-title title-brand">Askr</h5>
         </Col>
         <Col className="d-flex nav-col">
           {props.loggedIn && (
@@ -56,14 +56,14 @@ function NavBar(props) {
             </div>
           )}
         </Col>
-        <Col className="d-flex nav-col">
+        <Col className="d-flex nav-col justify-content-end">
           {props.loggedIn && (
-            <div className="d-flex justify-content-end md-ms-5">
-              <div className="d-flex">
-                <div className="d-none d-lg-block my-auto ms-4 welcome-container h-50">
+            <div className="d-flex justify-content-end">
+              <div className="d-flex ms-5">
+                <div className="d-none d-lg-block my-auto ms-5 welcome-container h-50">
                   {props.loggedIn && `Welcome, ${props.firstName}`}
                 </div>
-                <div className="avatar-image-container my-auto d-none d-md-block ms-3 me-5">
+                <div className="avatar-image-container my-auto d-none d-md-block ms-2 me-1 p-1">
                   <img
                     className="nav-avatar"
                     src={props.loggedIn && props.avatar}
@@ -72,7 +72,7 @@ function NavBar(props) {
                 </div>
               </div>
               <Button
-                className="mx-4 h-75 my-auto global-button"
+                className="ms-4 my-auto global-button me-2"
                 onClick={() => logOut()}
               >
                 Log Out

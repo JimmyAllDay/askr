@@ -45,80 +45,71 @@ function Answer(props) {
   };
 
   return (
-    <div className="w-75 mt-2 leaderboard-border">
-      {redirect ? <Redirect to={`/questions/${id}`} /> : null}
-      <div className="d-flex justify-content-center w-100 leaderboard-header">
-        <div className="w-100 leaderboard-header-background">
-          <h5 className="leaderboard-header-background mt-2">Answer</h5>
-        </div>
+    <div className="w-50 mt-5 main-col home-background d-flex flex-column">
+      {redirect && <Redirect to={`/questions/${id}`} />}
+      <div className="w-100 main-header-background new-q-header-border">
+        <h6 className="new-q-header-background my-auto">Answer</h6>
       </div>
-      <div className="w-100 border p-2">
-        <div className="d-flex flex-column justify-content-center leaderboard-user-border">
-          <div className="d-flex justify-content-start leaderboard-user-header-background leaderboad-score-header-boarder">
-            <h3 className="ms-4 my-auto p-2 leaderboard-user-header-background ">
-              {data.asker} asks:
-            </h3>
+      <div className="p-2 home-background">
+        {/* Card Border */}
+        <div className="card-border-background">
+          {/* Card row 1 */}
+          <div className="d-flex flex-row q-header ">
+            <div className="question-avatar-container">
+              <img
+                src={data.avatar}
+                alt="avatar"
+                className="question-avatar m-1"
+              ></img>
+            </div>
+            <h5 className="ms-3 mt-2 q-card-text me-auto">{`${data.asker}, asks:`}</h5>
           </div>
-          <div className="d-flex justify-content-start">
-            <div className="border">
-              <div className="question-avatar-container p-2">
-                <img
-                  src={data.avatar}
-                  alt="avatar"
-                  className="question-avatar"
-                ></img>
-              </div>
-            </div>
-            <div className="border w-100 d-flex flex-column">
-              <div className="border d-flex">
-                <h3 className="p-2 ms-5 my-3">Would you rather?</h3>
-              </div>
-              <div className="border p-2">
-                <form onChange={(e) => formStateHandler(e)}>
-                  <div className="row d-flex mx-5 my-2 justify-content-center">
-                    <div className="col d-flex">
-                      <div className="d-flex flex-column align-items-start mx-auto">
-                        <div className="">
-                          <input
-                            className="me-3 mt-2 radio-btn border"
-                            name="whaddayawant"
-                            type="radio"
-                            value={data.questionOptionA}
-                          />
-                          <label>
-                            <h4>{data.questionOptionA}</h4>
-                          </label>
-                        </div>
-                        <div className="align-self-center my-2">
-                          <h5>or...</h5>
-                        </div>
-                        <div className="">
-                          <input
-                            className="me-3 mt-2"
-                            name="whaddayawant"
-                            type="radio"
-                            value={data.questionOptionB}
-                          />
+          {/* Card row 2*/}
+          <div className="">
+            <h6 className="q-card-text my-auto mb-1">Would you rather?</h6>
+          </div>
 
-                          <label>
-                            <h4>{data.questionOptionB}</h4>
-                          </label>
-                        </div>
-                      </div>
-                    </div>
+          {/* Card row 3 */}
+          <div className="q-card-text d-flex flex-column">
+            <form onChange={(e) => formStateHandler(e)}>
+              <div className="col d-flex">
+                <div className="d-flex flex-column align-items-start mx-auto">
+                  <div className="">
+                    <input
+                      className="me-3 mt-4"
+                      name="q-answer"
+                      type="radio"
+                      value={data.questionOptionA}
+                    />
+                    <label>
+                      <h5>{data.questionOptionA}</h5>
+                    </label>
                   </div>
-                </form>
+                  <div className="align-self-center">
+                    <h6>or...</h6>
+                  </div>
+                  <div className="">
+                    <input
+                      className="me-3 mt-2"
+                      name="q-answer"
+                      type="radio"
+                      value={data.questionOptionB}
+                    />
+
+                    <label>
+                      <h5>{data.questionOptionB}</h5>
+                    </label>
+                  </div>
+                </div>
               </div>
-              <div className="p-3 border d-grid gap-2">
-                <Button
-                  className="new-q-button"
-                  type="submit"
-                  onClick={() => submitForm()}
-                >
-                  Submit
-                </Button>
-              </div>
-            </div>
+            </form>
+            <Button
+              className="global-button my-2"
+              type="submit"
+              onClick={() => submitForm()}
+            >
+              Submit
+            </Button>
           </div>
         </div>
       </div>

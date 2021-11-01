@@ -33,66 +33,55 @@ function Poll(props) {
   }
 
   return (
-    <div className="w-75 mt-2">
-      <div className="d-flex justify-content-center w-100">
-        <div className="w-100 border home-button">
-          <h5>Poll</h5>
-        </div>
+    // Container
+    <div className="w-50 mt-5 main-col home-background d-flex flex-column">
+      <div className="w-100 main-header-background new-q-header-border">
+        <h6 className="new-q-header-background my-auto">Poll</h6>
       </div>
-      <div className="w-100 border p-2">
-        <div className="d-flex flex-column justify-content-center">
-          <div className="w-100 border mb-2">
-            <div className="border d-flex justify-content-start">
-              <h3 className="ms-4 my-auto p-2">{data.asker} asked:</h3>
-              <div className="border d-flex">
-                <h5 className="p-2 ms-5 my-2">
-                  {`Would you rather ${answerA} or ${answerB} ?`}{" "}
-                </h5>
-              </div>
+      <div className="p-2 home-background">
+        {/* Card Border */}
+        <div className="card-border-background">
+          {/* Card row 1 */}
+          <div className="d-flex flex-row q-header">
+            <div className="question-avatar-container">
+              <img
+                src={data.avatar}
+                alt="avatar"
+                className="question-avatar m-1"
+              ></img>
             </div>
-            <div className="d-flex justify-content-start">
-              <div className="border">
-                <div className="question-avatar-container p-2">
-                  <img
-                    src={data.avatar}
-                    alt="avatar"
-                    className="question-avatar"
-                  ></img>
-                </div>
+            <h5 className="ms-3 mt-2 q-card-text">{`${data.asker} asked:`}</h5>
+          </div>
+          {/* Card row 2*/}
+          <div className="">
+            <h6 className="ms-3 mt-2 q-card-text">Would you rather:</h6>
+            <div className="d-flex justify-content-around">
+              <h5 className="my-auto col p-2">{answerA}</h5>
+              <h6 className="my-auto m-4">or</h6>
+              <h5 className="my-auto col p-2">{answerB}</h5>
+            </div>
+          </div>
+
+          {/* Card row 3 */}
+          <div className="q-card-text d-flex flex-column mx-auto p-2">
+            <h5 className="p-2 m-auto">{`You answered: ${getUserAnswer()}`}</h5>
+            <div className="d-flex mt-3">
+              <div className="w-75 border border-primary">
+                <p className="my-auto">{`${calcPercent(
+                  totalA,
+                  totalAnswers
+                )} %`}</p>
               </div>
-              <div className="border w-100 d-flex flex-column">
-                <div className="border d-flex">
-                  <h5 className="p-2 m-auto">{`Your answer was: ${getUserAnswer()}`}</h5>
-                </div>
-                <div className="px-1 py-3 border d-flex flex-row gap-2">
-                  <div className="w-25 justify-content-start text-start">
-                    <h5>{data.questionOptionA}</h5>
-                  </div>
-                  <div className="w-50 border border-primary">
-                    <p className="my-1">{`${calcPercent(
-                      totalA,
-                      totalAnswers
-                    )} %`}</p>
-                  </div>
-                  <div className="my-auto">
-                    <p className="">{`${totalAnswerA.length} / ${totalAnswers} total answers`}</p>
-                  </div>
-                </div>
-                <div className="px-1 py-3 border d-flex flex-row gap-2">
-                  <div className="w-25 justify-content-start text-start">
-                    <h5>{data.questionOptionB}</h5>
-                  </div>
-                  <div className="w-50 border border-primary">
-                    <p className="my-1">{`${calcPercent(
-                      totalB,
-                      totalAnswers
-                    )} %`}</p>
-                  </div>
-                  <div className="my-auto">
-                    <p className="">{`${totalAnswerB.length} / ${totalAnswers} total answers`}</p>
-                  </div>
-                </div>
+              <p className="my-auto ms-5">{`${totalAnswerA.length} / ${totalAnswers} answers`}</p>
+            </div>
+            <div className="d-flex">
+              <div className="w-75 border border-primary mt-2">
+                <p className="my-auto">{`${calcPercent(
+                  totalB,
+                  totalAnswers
+                )} %`}</p>
               </div>
+              <p className="my-auto ms-5">{`${totalAnswerB.length} / ${totalAnswers} answers`}</p>
             </div>
           </div>
         </div>

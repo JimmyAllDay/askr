@@ -53,31 +53,43 @@ function Home(props) {
   });
 
   return (
-    <div className="w-75 mt-2 home-menu-border">
+    <div className="w-50 mt-5 main-col home-background">
       <div className="d-flex justify-content-center w-100">
         <div
-          className={`w-50 border home-button home-menu-btn ${
-            answeredQs ? "active-home-qs-menu-btn" : ""
+          className={`w-50 home-button home-menu-btn ${
+            answeredQs ? "active-home-qs-menu-btn" : "inactive-home-qs-menu-btn"
           }`}
           onClick={() => setAnsweredQs(true)}
         >
-          <h5 className={`mt-2 ${answeredQs ? "active-home-qs-menu-btn" : ""}`}>
+          <h6
+            className={`my-auto ${
+              answeredQs
+                ? "active-home-qs-menu-btn"
+                : "inactive-home-qs-menu-btn"
+            }`}
+          >
             Answered Questions
-          </h5>
+          </h6>
         </div>
         <div
-          className={`w-50 border home-button home-menu-btn ${
-            answeredQs ? "" : "active-home-qs-menu-btn"
+          className={`w-50 home-button home-menu-btn-right ${
+            answeredQs ? "inactive-home-qs-menu-btn" : "active-home-qs-menu-btn"
           }`}
           onClick={() => setAnsweredQs(false)}
         >
-          <h5 className={`mt-2 ${answeredQs ? "" : "active-home-qs-menu-btn"}`}>
+          <h6
+            className={`my-auto ${
+              answeredQs
+                ? "inactive-home-qs-menu-btn"
+                : "active-home-qs-menu-btn"
+            }`}
+          >
             Unanswered Questions
-          </h5>
+          </h6>
         </div>
       </div>
-      <div className="w-100 border pb-2 px-2">
-        <div className="d-flex flex-column justify-content-center">
+      <div className="w-100 pb-2 px-2 home-background">
+        <div className="d-flex flex-column justify-content-center home-background">
           {answeredQs === true ? mappedAnswered : mappedUnanswered}
         </div>
       </div>

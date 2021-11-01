@@ -29,7 +29,7 @@ function App() {
   return (
     <BrowserRouter>
       {loggedIn ? null : <Redirect to="/" />}
-      <div className="App h-100">
+      <div className="App h-100 bg-image-1">
         <NavBar {...state.loggedInUser} />
         <Container fluid className="d-flex justify-content-center">
           <Switch>
