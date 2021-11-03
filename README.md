@@ -13,7 +13,7 @@ You'll need a dev environment, with all the usual suspects installed - Node, etc
 
 3. Run npm start
 
-### To play would you rather:
+### To play Askr:
 
 As at the current version, I've built a mock log-in flow. I may build this out in future, if there's any value in doing so.
 
