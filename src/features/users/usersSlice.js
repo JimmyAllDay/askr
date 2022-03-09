@@ -12,6 +12,7 @@ const initialState = [
     questionsAsked: 1,
     questionsAnswered: 0,
     totalPoints: 1,
+    totalLikes: 0,
   },
   {
     id: "2",
@@ -21,6 +22,7 @@ const initialState = [
     questionsAsked: 1,
     questionsAnswered: 2,
     totalPoints: 3,
+    totalLikes: 0,
   },
   {
     id: "3",
@@ -30,6 +32,7 @@ const initialState = [
     questionsAsked: 1,
     questionsAnswered: 1,
     totalPoints: 2,
+    totalLikes: 0,
   },
 ];
 

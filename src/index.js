@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
+import "./app/styles/index.css";
 import App from "./App";
 import { store } from "./app/store";
 import { Provider } from "react-redux";
@@ -9,7 +9,7 @@ import * as serviceWorker from "./serviceWorker";
 // Importing the Bootstrap CSS
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import "../src/app/styles/App.css";
+import "../src/app/styles/App.scss";
 
 ReactDOM.render(
   <React.StrictMode>

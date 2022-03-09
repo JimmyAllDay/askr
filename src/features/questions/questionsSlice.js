@@ -13,6 +13,7 @@ const initialState = [
     questionOptionA: "Meditate",
     questionOptionB: "Practice writing",
     answers: [{ id: "", answer: "" }],
+    likes: [{ id: 1, liked: 1 }],
   },
   {
     key: "H4l3YteiblpYlTNXLzM76",
@@ -26,6 +27,7 @@ const initialState = [
       { id: "2", answer: "Do a backflip" },
       { id: "3", answer: "Do a backflip" },
     ],
+    likes: [],
   },
   {
     key: "G6X3XqatibbLqBETLzK38",
@@ -36,6 +38,7 @@ const initialState = [
     questionOptionA: "Go for a walk in the sun",
     questionOptionB: "Eat nutritious food",
     answers: [{ id: "2", answer: "Eat nutritious food" }],
+    likes: [],
   },
 ];
 
@@ -53,6 +56,15 @@ const questionsSlice = createSlice({
     },
     questionAdded(state, action) {
       state.push(action.payload);
+    },
+    questionLiked(state, action) {
+      state.forEach((question) => {
+        if (question.key == action.payload.key) {
+          question.likes == []
+            ? console.log("likes array empty")
+            : console.log("likes array contains likes");
+        }
+      });
     },
   },
 });

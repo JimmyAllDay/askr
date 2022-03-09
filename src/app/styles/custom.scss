@@ -1,0 +1,14 @@
+/* The following block can be included in a custom.scss */
+
+/* make the customizations */
+$theme-colors: (
+  "dark": #353535,
+  "secondary": #525252,
+  "primary": cornflowerblue,
+  "muted": rgb(165, 173, 189),
+  "info": tomato,
+  "danger": teal,
+);
+
+/* import bootstrap to set changes */
+@import "~bootstrap/scss/bootstrap";
