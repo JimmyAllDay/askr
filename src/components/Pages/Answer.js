@@ -10,21 +10,21 @@ import { Container, Col, Button } from "react-bootstrap";
 
 import CardHeader from "../CardComponents/CardHeader";
 
-// import CardLikes from "./CardLikes";
+import CardLikes from "../CardComponents/CardLikes";
 import WouldYouText from "../CardComponents/WouldYouText";
 
 function Answer(props) {
+  const { user } = props;
   const { id } = useParams();
   const data = props.data.filter((question) => question.key === id)[0];
-  const user = props.user;
-  const dispatch = useDispatch();
 
-  console.log(data);
+  const dispatch = useDispatch();
 
   const [answer, setAnswer] = useState("");
   const [redirect, setRedirect] = useState(false);
 
   const formStateHandler = (e) => setAnswer(e.target.value);
+  // TODO: this logic should be moved into the reducer
   const submitForm = () => {
     if (answer != "") {
       const answers = data.answers;
@@ -59,7 +59,14 @@ function Answer(props) {
         avatar={data.avatar}
         name={data.asker}
         text={"Asks:"}
-        subComp={null}
+        subComp={
+          <CardLikes
+            likes={data.likes}
+            userId={user.id}
+            askerId={data.askerId}
+            questionId={id}
+          />
+        }
       />
 
       <Col className="d-flex flex-column pt-2">

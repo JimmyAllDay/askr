@@ -9,17 +9,19 @@ const initialState = [
     dateAsked:
       "Fri Oct 15 2021 20:11:30 GMT+1100 (Australian Eastern Daylight Time)",
     asker: "James Marshall",
+    askerId: 1,
     avatar: avatar4,
     questionOptionA: "Meditate",
     questionOptionB: "Practice writing",
     answers: [{ id: "", answer: "" }],
-    likes: [{ id: 1, liked: 1 }],
+    likes: [{ id: 1 }],
   },
   {
     key: "H4l3YteiblpYlTNXLzM76",
     dateAsked:
       "Fri Oct 15 2021 20:12:30 GMT+1100 (Australian Eastern Daylight Time)",
     asker: "Hugh McKenzie",
+    askerId: 2,
     avatar: avatar2,
     questionOptionA: "Eat a bean",
     questionOptionB: "Do a backflip",
@@ -34,11 +36,24 @@ const initialState = [
     dateAsked:
       "Fri Oct 15 2021 20:13:30 GMT+1100 (Australian Eastern Daylight Time)",
     asker: "Gemma Nicholas",
+    askerId: 3,
     avatar: avatar1,
     questionOptionA: "Go for a walk in the sun",
     questionOptionB: "Eat nutritious food",
     answers: [{ id: "2", answer: "Eat nutritious food" }],
     likes: [],
+  },
+  {
+    key: "G6X3XqatibeLqQETLoK27",
+    dateAsked:
+      "Sun Mar 13 2022 10:02:30 GMT+1100 (Australian Eastern Daylight Time)",
+    asker: "Nick Lawrentin",
+    askerId: 4,
+    avatar: avatar4,
+    questionOptionA: "Play golf",
+    questionOptionB: "Go have a beer",
+    answers: [{ id: "1", answer: "Go have a beer" }],
+    likes: [{ id: 1 }],
   },
 ];
 
@@ -59,16 +74,29 @@ const questionsSlice = createSlice({
     },
     questionLiked(state, action) {
       state.forEach((question) => {
-        if (question.key == action.payload.key) {
-          question.likes == []
-            ? console.log("likes array empty")
-            : console.log("likes array contains likes");
+        if (question.key === action.payload.key) {
+          question.likes.push(action.payload.like);
         }
       });
+    },
+    questionUnLiked(state, action) {
+      let unlikedQuestion = state.find(
+        (question) => question.key === action.payload.key
+      );
+      const likesArray = unlikedQuestion.likes;
+      const newLikes = likesArray.filter(
+        (like) => like.id !== action.payload.like.id
+      );
+      unlikedQuestion.likes = newLikes;
     },
   },
 });
 
-export const { questionUpdated, questionAdded } = questionsSlice.actions;
+export const {
+  questionUpdated,
+  questionAdded,
+  questionLiked,
+  questionUnLiked,
+} = questionsSlice.actions;
 
 export default questionsSlice.reducer;

@@ -1,88 +1,106 @@
-import React, { useState } from "react";
+import React from "react";
+
+// import Avatar from "../CardComponents/Avatar";
+import NavButton from "./NavButton";
 
 import { useDispatch } from "react-redux";
 import { userLoggedOut } from "../../features/users/loggedInSlice";
 
 import { NavLink } from "react-router-dom";
 
-import { Container, Navbar, Offcanvas, Nav, Button } from "react-bootstrap";
+import { Container, Navbar, Nav, Button, Col } from "react-bootstrap";
 
 export default function NavBar(props) {
-  const [show, setShow] = useState(false);
+  const { loggedIn, firstName, avatar } = props;
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
   const dispatch = useDispatch();
 
   const logOut = () => {
     dispatch(userLoggedOut());
   };
 
-  const {
-    loggedIn,
-    // firstName, avatar
-  } = props;
   return (
-    <Navbar bg="secondary" expand={false} className="">
-      <Container fluid>
-        <Navbar.Brand className="nav__logo text-light" href="/">
-          Askr
-        </Navbar.Brand>
+    <Navbar bg="secondary" expand={false}>
+      <Container fluid className="d-flex">
+        <Col xs={2} md={3} className="d-flex">
+          <Navbar.Brand
+            className="text-light ms-2 me-auto"
+            href="/"
+            style={{ fontFamily: "Righteous, cursive" }}
+          >
+            Askr
+          </Navbar.Brand>
+        </Col>
         {loggedIn && (
           <>
-            <Navbar.Toggle
-              className="border-light"
-              aria-controls="offcanvasNavbar"
-              onClick={() => handleShow()}
-            />
+            <Col
+              md={6}
+              xl={5}
+              className="d-none d-md-flex justify-content-between px-2 mx-auto"
+            >
+              <Nav.Item>
+                <NavLink
+                  to="/"
+                  exact
+                  activeClassName="active"
+                  className="nav-link text-light"
+                >
+                  Home
+                </NavLink>
+              </Nav.Item>
+              <Nav.Item>
+                <NavLink
+                  to="/add"
+                  activeClassName="active"
+                  className="nav-link text-light"
+                >
+                  New Question
+                </NavLink>
+              </Nav.Item>
+              <Nav.Item>
+                <NavLink
+                  to="/leaderboard"
+                  activeClassName="active"
+                  className="nav-link text-light"
+                >
+                  Leader Board
+                </NavLink>
+              </Nav.Item>
+            </Col>
 
-            <Offcanvas show={show} onHide={handleClose}>
-              <Offcanvas.Header closeButton>
-                <Offcanvas.Title id="offcanvasNavbarLabel">
-                  Askr
-                </Offcanvas.Title>
-              </Offcanvas.Header>
-              <Offcanvas.Body>
-                <Nav className="justify-content-center flex-grow-1">
-                  <Nav.Item className="">
-                    <NavLink
-                      to="/"
-                      exact
-                      activeClassName="active"
-                      className="nav-link"
-                      onClick={handleClose}
-                    >
-                      Home
-                    </NavLink>
-                  </Nav.Item>
-                  <Nav.Item>
-                    <NavLink
-                      to="/add"
-                      activeClassName="active"
-                      className="nav-link"
-                      onClick={handleClose}
-                    >
-                      New Question
-                    </NavLink>
-                  </Nav.Item>
-                  <Nav.Item>
-                    <NavLink
-                      to="/leaderboard"
-                      activeClassName="active"
-                      className="nav-link"
-                      onClick={handleClose}
-                    >
-                      Leader Board
-                    </NavLink>
-                  </Nav.Item>
-                  <Nav.Item>
-                    <Button className="mx-auto" onClick={() => logOut()}>
-                      Log Out
-                    </Button>
-                  </Nav.Item>
-                </Nav>
-              </Offcanvas.Body>
-            </Offcanvas>
+            <Col xs={8} md={2} className="p-0 d-flex">
+              <div className="mx-auto d-flex">
+                <p className="my-auto ms-auto text-light d-none d-md-flex d-xl-none">
+                  {`${firstName}`}
+                </p>
+                <p className="my-auto ms-auto text-light d-md-none d-xl-flex">{`Welcome, ${firstName}`}</p>
+                <img
+                  src={avatar}
+                  alt="avatar icon"
+                  style={{ height: "35px", width: "35px" }}
+                  className="ms-2"
+                />
+              </div>
+            </Col>
+
+            <Col xs={2} className="d-flex d-md-none">
+              <NavButton className="d-md-none ms-auto" loggedIn={loggedIn} />
+            </Col>
+            <Col md={1} className="d-flex d-none d-md-flex">
+              <Button
+                variant="outline-info"
+                className="ms-auto px-1 my-auto d-flex"
+                size="sm"
+                onClick={() => logOut()}
+              >
+                <p
+                  className="m-0 my-auto text-info"
+                  style={{ fontSize: "0.9em" }}
+                >
+                  Log Out
+                </p>
+              </Button>
+            </Col>
           </>
         )}
       </Container>

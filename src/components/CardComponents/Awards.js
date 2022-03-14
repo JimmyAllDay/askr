@@ -8,7 +8,7 @@ export default function Awards({ ranking }) {
   const gold = (
     <div className="d-flex flex-column">
       <Icon
-        icon="charm:trophy"
+        icon="emojione:trophy"
         className="align-self-center"
         style={{ fontSize: "2em", color: "gold" }}
       />
@@ -18,7 +18,7 @@ export default function Awards({ ranking }) {
   const silver = (
     <div className="d-flex flex-column">
       <Icon
-        icon="charm:trophy"
+        icon="emojione:2nd-place-medal"
         className="align-self-center"
         style={{ fontSize: "1.8em", color: "silver" }}
       />
@@ -28,7 +28,7 @@ export default function Awards({ ranking }) {
   const bronze = (
     <div className="d-flex flex-column">
       <Icon
-        icon="charm:trophy"
+        icon="emojione:3rd-place-medal"
         className="align-self-center"
         style={{ fontSize: "1.6em", color: "tan" }}
       />
@@ -44,7 +44,7 @@ export default function Awards({ ranking }) {
       case 3:
         return bronze;
       default:
-        return null;
+        return <p>{`${position}.`}</p>;
     }
   };
   return (

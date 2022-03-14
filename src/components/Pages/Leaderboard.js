@@ -21,6 +21,7 @@ function Leaderboard(props) {
       avatar,
       questionsAsked,
       questionsAnswered,
+      totalLikes,
     } = user;
     const ranking = i + 1;
     return (
@@ -35,6 +36,7 @@ function Leaderboard(props) {
         <LeaderboardCard
           questionsAsked={questionsAsked}
           questionsAnswered={questionsAnswered}
+          totalLikes={totalLikes}
         />
       </Container>
     );

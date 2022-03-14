@@ -16,7 +16,7 @@ export default function HomeButtonGroup({ handler }) {
           key={idx}
           id={`radio-${idx}`}
           type="radio"
-          variant={radio.value === radioValue ? "primary" : "outline-primary"}
+          variant={radio.value === radioValue ? "info" : "outline-info"}
           name="radio"
           value={radio.value}
           checked={radioValue === radio.value}

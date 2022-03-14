@@ -35,6 +35,7 @@ function Home(props) {
         key={question.key}
         id={question.key}
         name={question.asker}
+        askerId={question.askerId}
         question={question.questionOptionA}
         answers={question.answers}
         avatar={question.avatar}
@@ -54,6 +55,7 @@ function Home(props) {
         key={question.key}
         id={question.key}
         name={question.asker}
+        askerId={question.askerId}
         question={question.questionOptionA}
         answers={question.answers}
         avatar={question.avatar}

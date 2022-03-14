@@ -14,6 +14,7 @@ import { Container, Button } from "react-bootstrap";
 
 function NewQuestion() {
   const user = useSelector((state) => state.loggedInUser);
+  const { avatar, id, firstName } = user;
   const dispatch = useDispatch();
 
   const [redirect, setRedirect] = useState(false);
@@ -36,15 +37,17 @@ function NewQuestion() {
           key: nanoid(),
           dateAsked: date,
           asker: `${loggedInUser.firstName} ${loggedInUser.lastName}`,
-          avatar: loggedInUser.avatar,
+          askerId: id,
+          avatar: avatar,
           questionOptionA: optionA,
           questionOptionB: optionB,
           answers: [{ id: "", answer: "" }],
+          likes: [],
         })
       );
       dispatch(
         userUpdated({
-          id: user.id,
+          id: id,
           questionsAsked: 1,
           questionsAnswered: 0,
           totalPoints: 1,
@@ -60,8 +63,8 @@ function NewQuestion() {
     <Container fluid className="p-0 border border-dark p-2">
       {redirect && <Redirect to="/" />}
       <CardHeader
-        avatar={null}
-        name={`${user.firstName},`}
+        avatar={avatar}
+        name={`${firstName},`}
         text={"Finish the question"}
         subComp={null}
       />

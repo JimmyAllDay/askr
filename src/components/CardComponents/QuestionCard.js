@@ -1,8 +1,5 @@
 import React from "react";
 
-// import { useDispatch } from "react-redux";
-// import { questionLiked } from "../../features/questions/questionsSlice";
-
 import CardLikes from "./CardLikes";
 import CardHeader from "./CardHeader";
 
@@ -12,14 +9,11 @@ import { Container, Col } from "react-bootstrap";
 import WouldYouText from "./WouldYouText";
 
 export default function QuestionCard(props) {
-  const { avatar, name, likes, question } = props;
+  const { avatar, name, askerId, likes, question, user, answers, id } = props;
 
-  // const dispatch = useDispatch();
-  const userId = Number(props.user.id);
-  const likesArray = props.likes;
+  const userId = Number(user.id);
 
   function sortLinks() {
-    const answers = props.answers;
     const userID = props.user.id;
     let answered = false;
     answers.find((answer) => {
@@ -27,19 +21,7 @@ export default function QuestionCard(props) {
         answered = true;
       }
     });
-    return answered === true ? `/questions/${props.id}` : `/answer/${props.id}`;
-  }
-
-  function likeQuestion() {
-    const isQLiked = likesArray.find((like) => {
-      like.id == userId;
-    });
-
-    return console.log(isQLiked);
-  }
-
-  function likeCount(likes) {
-    return likes.length;
+    return answered === true ? `/questions/${id}` : `/answer/${id}`;
   }
 
   return (
@@ -48,16 +30,20 @@ export default function QuestionCard(props) {
       className="text-light"
       style={{ textDecoration: "none" }}
     >
-      <Container fluid className="p-0 mt-1 border border-dark bg-dark">
+      <Container
+        fluid
+        className="p-0 mt-1 blur-bg rounded-3 border border-dark border-3"
+      >
         <CardHeader
-          avatar={avatar}
+          avatar={avatar && avatar}
           name={name}
           text={"Asks:"}
           subComp={
             <CardLikes
               likes={likes}
-              likeQuestion={likeQuestion}
-              likeCount={likeCount}
+              askerId={askerId}
+              userId={userId}
+              questionId={id}
             />
           }
         />

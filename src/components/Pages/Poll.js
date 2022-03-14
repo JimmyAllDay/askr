@@ -5,6 +5,7 @@ import React from "react";
 import CardHeader from "../CardComponents/CardHeader";
 import WouldYouText from "../CardComponents/WouldYouText";
 import PollAnswers from "../CardComponents/PollAnswers";
+import CardLikes from "../CardComponents/CardLikes";
 
 import { useParams } from "react-router-dom";
 
@@ -12,8 +13,9 @@ import { Container } from "react-bootstrap";
 
 function Poll(props) {
   const { id } = useParams();
-  const userId = props.user.id;
-  const data = props.questions.filter((question) => question.key === id)[0];
+  const { questions, user } = props;
+  const userId = user.id;
+  const data = questions.filter((question) => question.key === id)[0];
   const answersArray = data.answers;
 
   return (
@@ -22,8 +24,14 @@ function Poll(props) {
         avatar={data.avatar}
         name={data.asker}
         text={"Asked:"}
-        // TODO: Pass <CardLikes/> component into subComp prop, once props are available after refactor
-        subComp={null}
+        subComp={
+          <CardLikes
+            likes={data.likes}
+            userId={userId}
+            askerId={data.askerId}
+            questionId={id}
+          />
+        }
       />
 
       <WouldYouText />

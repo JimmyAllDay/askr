@@ -1,14 +1,31 @@
-/* The following block can be included in a custom.scss */
-
-/* make the customizations */
+/* Customizations */
 $theme-colors: (
   "dark": #353535,
+  "light": rgb(233, 233, 233),
   "secondary": #525252,
   "primary": cornflowerblue,
-  "muted": rgb(165, 173, 189),
+  "muted": rgba(165, 173, 189, 0.068),
   "info": tomato,
   "danger": teal,
 );
+
+.btn {
+  color: #fff !important;
+}
+.btn-outline-info {
+  color: var(info) !important;
+}
+.btn-outline-info:hover {
+  color: var(light) !important;
+}
+
+.navbar-toggler-icon {
+  background-image: url(../../assets/images/hamburger.png) !important;
+}
+
+.navbar-toggler:focus {
+  box-shadow: 0 0 0 0.05rem rgba(255, 255, 255, 0.521) !important;
+}
 
 /* import bootstrap to set changes */
 @import "~bootstrap/scss/bootstrap";

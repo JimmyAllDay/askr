@@ -15,7 +15,7 @@ export default function CardHeader({ avatar, name, text, subComp }) {
           <h3 className="align-self-center m-auto">{name}</h3>
           {text}
         </Col>
-        <Col xs={2} className="d-flex flex-column border">
+        <Col xs={2} className="d-flex flex-column m-0 pt-1 pe-1">
           {subComp}
         </Col>
       </Row>
