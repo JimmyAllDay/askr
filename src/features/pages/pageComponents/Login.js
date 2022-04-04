@@ -4,7 +4,7 @@ import { userLoggedIn } from "../../users/loggedInSlice";
 
 import { Container, Col, Button } from "react-bootstrap";
 
-import { Redirect } from "react-router-dom";
+import { Redirect, useLocation } from "react-router-dom";
 
 import Select from "react-select";
 import AlertModal from "../../utils/AlertModal";
@@ -12,6 +12,8 @@ import AlertModal from "../../utils/AlertModal";
 export default function LoginModal({ users, loggedIn }) {
   const [user, setUser] = useState("");
   const [showAlert, setShowAlert] = useState(false);
+
+  const { state } = useLocation();
 
   const handleCloseAlert = () => {
     return setShowAlert(false);
@@ -50,6 +52,10 @@ export default function LoginModal({ users, loggedIn }) {
     }
   };
 
+  if (loggedIn === true) {
+    return <Redirect to={state?.from || "/"} />;
+  }
+
   return (
     <Container
       fluid
@@ -61,7 +67,7 @@ export default function LoginModal({ users, loggedIn }) {
         title={alertTitle}
         message={alertMessage}
       />
-      {loggedIn === true && <Redirect to={`/`} />}
+
       <h4
         className="ms-2 mt-1 text-info align-self-start"
         style={{ fontFamily: "Righteous, cursive" }}

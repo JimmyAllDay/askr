@@ -1,13 +1,9 @@
 /* eslint no-unused-vars: "off" */
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
-  loggedIn: false,
-  id: "",
-  firstName: "",
-  lastName: "",
-  avatar: "",
-};
+import { initialLoggedInState } from "../utils/initialState";
+
+const initialState = initialLoggedInState;
 
 const logInSlice = createSlice({
   name: "loggedIn",

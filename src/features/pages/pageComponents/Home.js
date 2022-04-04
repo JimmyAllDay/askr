@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import QuestionCard from "../cardComponents/QuestionCard";
-import HomeButtonGroup from "../../utils/AlertModal";
+import HomeButtonGroup from "../../utils/HomeButtonGroup";
 
 import { Container } from "react-bootstrap";
 

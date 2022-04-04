@@ -1,26 +1,56 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./styles/index.css";
 import App from "./App";
-import { store } from "./store";
+
+import { configureStore } from "@reduxjs/toolkit";
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from "redux-persist";
+import storage from "redux-persist/lib/storage";
+import { PersistGate } from "redux-persist/integration/react";
+
+import { rootReducer } from "./rootReducer";
+
+const persistConfig = {
+  key: "root",
+  version: 1,
+  storage,
+};
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+const store = configureStore({
+  reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
+});
+
+let persistor = persistStore(store);
+
 import { Provider } from "react-redux";
-import * as serviceWorker from "./serviceWorker";
 
-// Importing the Bootstrap CSS
 import "bootstrap/dist/css/bootstrap.min.css";
-
 import "./styles/App.scss";
+import "./styles/index.css";
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <PersistGate loading={null} persistor={persistor}>
+        <App />
+      </PersistGate>
     </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
