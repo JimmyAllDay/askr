@@ -1,13 +1,23 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { userLoggedIn } from "../../features/users/loggedInSlice";
+import { userLoggedIn } from "../../users/loggedInSlice";
 
 import { Container, Col, Button } from "react-bootstrap";
 
-import Select from "react-select";
+import { Redirect } from "react-router-dom";
 
-export default function LoginModal({ users }) {
+import Select from "react-select";
+import AlertModal from "../../utils/AlertModal";
+
+export default function LoginModal({ users, loggedIn }) {
   const [user, setUser] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
+
+  const handleCloseAlert = () => {
+    return setShowAlert(false);
+  };
+  const alertTitle = "User Log In";
+  const alertMessage = "Please select a user to log in";
 
   const dispatch = useDispatch();
 
@@ -24,7 +34,9 @@ export default function LoginModal({ users }) {
   };
 
   const logInUser = () => {
-    if (user) {
+    if (!user) {
+      setShowAlert(true);
+    } else {
       dispatch(
         userLoggedIn({
           loggedIn: true,
@@ -43,6 +55,13 @@ export default function LoginModal({ users }) {
       fluid
       className="p-0 d-flex flex-column my-auto text-light blur-bg rounded-3 align-items-center"
     >
+      <AlertModal
+        showAlert={showAlert}
+        handleCloseAlert={handleCloseAlert}
+        title={alertTitle}
+        message={alertMessage}
+      />
+      {loggedIn === true && <Redirect to={`/`} />}
       <h4
         className="ms-2 mt-1 text-info align-self-start"
         style={{ fontFamily: "Righteous, cursive" }}

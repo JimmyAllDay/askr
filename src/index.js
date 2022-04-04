@@ -1,15 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./app/styles/index.css";
+import "./styles/index.css";
 import App from "./App";
-import { store } from "./app/store";
+import { store } from "./store";
 import { Provider } from "react-redux";
 import * as serviceWorker from "./serviceWorker";
 
 // Importing the Bootstrap CSS
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import "../src/app/styles/App.scss";
+import "./styles/App.scss";
 
 ReactDOM.render(
   <React.StrictMode>

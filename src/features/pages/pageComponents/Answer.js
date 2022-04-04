@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 
 import { useDispatch } from "react-redux";
-import { questionUpdated } from "../../features/questions/questionsSlice";
-import { userUpdated } from "../../features/users/usersSlice";
+import { questionUpdated } from "../../questions/questionsSlice";
+import { userUpdated } from "../../users/usersSlice";
 
 import { useParams, Redirect } from "react-router-dom";
 
 import { Container, Col, Button } from "react-bootstrap";
 
-import CardHeader from "../CardComponents/CardHeader";
+import CardHeader from "../cardComponents/CardHeader";
 
-import CardLikes from "../CardComponents/CardLikes";
-import WouldYouText from "../CardComponents/WouldYouText";
+import CardLikes from "../cardComponents/CardLikes";
+import WouldYouText from "../cardComponents/WouldYouText";
 
 function Answer(props) {
   const { user } = props;
@@ -52,7 +52,7 @@ function Answer(props) {
   };
 
   return (
-    <Container fluid className="p-0 border border-dark bg-dark text-light">
+    <Container fluid className="p-0 blur-bg rounded-3 text-light">
       {redirect && <Redirect to={`/questions/${id}`} />}
 
       <CardHeader
@@ -104,13 +104,15 @@ function Answer(props) {
               </div>
             </div>
           </form>
-          <Button
-            className="mx-5 mb-2"
-            type="submit"
-            onClick={() => submitForm()}
-          >
-            Submit
-          </Button>
+          <Col className="d-flex mb-2">
+            <Button
+              className="mx-auto w-75"
+              type="submit"
+              onClick={() => submitForm()}
+            >
+              Submit
+            </Button>
+          </Col>
         </div>
       </Col>
     </Container>

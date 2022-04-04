@@ -1,8 +1,8 @@
 import React from "react";
 
-import CardHeader from "../CardComponents/CardHeader";
-import Awards from "../CardComponents/Awards";
-import LeaderboardCard from "../CardComponents/LeaderboardCard";
+import CardHeader from "../cardComponents/CardHeader";
+import Awards from "../cardComponents/Awards";
+import LeaderboardCard from "../cardComponents/LeaderboardCard";
 
 import { Container } from "react-bootstrap";
 
@@ -43,7 +43,6 @@ function Leaderboard(props) {
   });
 
   return (
-    // Container
     <Container fluid className="p-0">
       {mapRankings}
     </Container>

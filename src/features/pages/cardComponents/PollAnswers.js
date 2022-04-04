@@ -23,7 +23,7 @@ export default function PollAnswers({ data, answersArray, userId }) {
 
   function getUserAnswer() {
     const answerObject = answersArray.find((answer) => answer.id === userId);
-    return answerObject.answer;
+    return answerObject && answerObject.answer;
   }
 
   return (

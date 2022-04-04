@@ -14,7 +14,7 @@ const initialState = [
     questionOptionA: "Meditate",
     questionOptionB: "Practice writing",
     answers: [{ id: "", answer: "" }],
-    likes: [{ id: 1 }],
+    likes: [{ id: "1" }],
   },
   {
     key: "H4l3YteiblpYlTNXLzM76",
@@ -53,7 +53,7 @@ const initialState = [
     questionOptionA: "Play golf",
     questionOptionB: "Go have a beer",
     answers: [{ id: "1", answer: "Go have a beer" }],
-    likes: [{ id: 1 }],
+    likes: [{ id: "1" }],
   },
 ];
 
@@ -72,31 +72,31 @@ const questionsSlice = createSlice({
     questionAdded(state, action) {
       state.push(action.payload);
     },
-    questionLiked(state, action) {
-      state.forEach((question) => {
-        if (question.key === action.payload.key) {
-          question.likes.push(action.payload.like);
+    questionLikesUpdated(state, action) {
+      //TODO: refactor
+      return state.map((questionObj) => {
+        if (questionObj.key === action.payload.key) {
+          let newLikesArr = [];
+          const checkLike = questionObj.likes.some(
+            (like) => like.id === action.payload.like.id
+          );
+          if (checkLike) {
+            newLikesArr = questionObj.likes.filter(
+              (like) => like.id !== action.payload.like.id
+            );
+          } else {
+            newLikesArr = [...questionObj.likes, action.payload.like];
+          }
+          return { ...questionObj, likes: [...newLikesArr] };
+        } else {
+          return questionObj;
         }
       });
-    },
-    questionUnLiked(state, action) {
-      let unlikedQuestion = state.find(
-        (question) => question.key === action.payload.key
-      );
-      const likesArray = unlikedQuestion.likes;
-      const newLikes = likesArray.filter(
-        (like) => like.id !== action.payload.like.id
-      );
-      unlikedQuestion.likes = newLikes;
     },
   },
 });
 
-export const {
-  questionUpdated,
-  questionAdded,
-  questionLiked,
-  questionUnLiked,
-} = questionsSlice.actions;
+export const { questionUpdated, questionAdded, questionLikesUpdated } =
+  questionsSlice.actions;
 
 export default questionsSlice.reducer;

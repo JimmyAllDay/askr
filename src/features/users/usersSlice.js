@@ -11,7 +11,7 @@ const initialState = [
     avatar: avatar4,
     questionsAsked: 1,
     questionsAnswered: 0,
-    totalLikes: 1,
+    totalLikes: [{ id: "1" }],
     totalPoints: 2,
   },
   {
@@ -21,7 +21,7 @@ const initialState = [
     avatar: avatar2,
     questionsAsked: 1,
     questionsAnswered: 2,
-    totalLikes: 0,
+    totalLikes: [],
     totalPoints: 3,
   },
   {
@@ -31,7 +31,7 @@ const initialState = [
     avatar: avatar1,
     questionsAsked: 1,
     questionsAnswered: 1,
-    totalLikes: 0,
+    totalLikes: [],
     totalPoints: 2,
   },
   {
@@ -41,7 +41,7 @@ const initialState = [
     avatar: avatar4,
     questionsAsked: 1,
     questionsAnswered: 0,
-    totalLikes: 1,
+    totalLikes: [{ id: "1" }],
     totalPoints: 2,
   },
   {
@@ -51,7 +51,7 @@ const initialState = [
     avatar: avatar2,
     questionsAsked: 0,
     questionsAnswered: 0,
-    totalLikes: 0,
+    totalLikes: [],
     totalPoints: 0,
   },
 ];
@@ -75,37 +75,29 @@ const usersSlice = createSlice({
         }
       });
     },
-    userLikesIncremented(state, action) {
-      return state.map((user) =>
-        user.id === action.payload.askerId
-          ? {
-              ...user,
-              totalLikes: user.totalLikes + 1,
-              totalPoints: user.totalPoints + 1,
-            }
-          : user
-      );
-    },
-    userLikesDecremented(state, action) {
-      const newUserArray = state.map((user) =>
-        user.id === action.payload.askerId
-          ? {
-              ...user,
-              totalLikes: user.totalLikes - 1,
-              totalPoints: user.totalPoints - 1,
-            }
-          : user
-      );
-      return newUserArray;
+    userLikesUpdated(state, action) {
+      return state.map((userObj) => {
+        if (userObj.id === action.payload.askerId) {
+          let newLikesArr = [];
+          const checkLike = userObj.totalLikes.some(
+            (like) => like.id === action.payload.like.id
+          );
+          if (checkLike) {
+            newLikesArr = userObj.totalLikes.filter(
+              (like) => like.id !== action.payload.like.id
+            );
+          } else {
+            newLikesArr = [...userObj.totalLikes, action.payload.like];
+          }
+          return { ...userObj, totalLikes: [...newLikesArr] };
+        } else {
+          return userObj;
+        }
+      });
     },
   },
 });
 
-export const {
-  userAdded,
-  userUpdated,
-  userLikesIncremented,
-  userLikesDecremented,
-} = usersSlice.actions;
+export const { userAdded, userUpdated, userLikesUpdated } = usersSlice.actions;
 
 export default usersSlice.reducer;

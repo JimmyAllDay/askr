@@ -13,7 +13,8 @@ export default function QuestionCard(props) {
 
   const userId = Number(user.id);
 
-  function sortLinks() {
+  function sortLinks(e) {
+    e.stopPropagation;
     const userID = props.user.id;
     let answered = false;
     answers.find((answer) => {
@@ -26,14 +27,12 @@ export default function QuestionCard(props) {
 
   return (
     <Link
-      to={sortLinks()}
+      to={(e) => sortLinks(e)}
       className="text-light"
+      onMouseDown={(e) => e.stopPropagation}
       style={{ textDecoration: "none" }}
     >
-      <Container
-        fluid
-        className="p-0 mt-1 blur-bg rounded-3 border border-dark border-3"
-      >
+      <Container fluid className="p-0 mt-1 blur-bg rounded-3">
         <CardHeader
           avatar={avatar && avatar}
           name={name}

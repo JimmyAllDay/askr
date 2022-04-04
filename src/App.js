@@ -1,93 +1,39 @@
 import React from "react";
+import NavBar from "./features/utils/NavBar";
+import Routes from "./features/utils/Routes";
 
 import { useSelector } from "react-redux";
 
-import {
-  BrowserRouter,
-  Switch,
-  Route,
-  Redirect,
-  // History,
-} from "react-router-dom";
-
-import LoginModal from "./components/Pages/Login";
-import NavBar from "./components/Utils/NavBar";
-import Home from "./components/Pages/Home";
-import NewQuestion from "./components/Pages/NewQuestion";
-import Leaderboard from "./components/Pages/Leaderboard";
-import Answer from "./components/Pages/Answer";
-import Poll from "./components/Pages/Poll";
-import NotFound from "./components/Pages/NotFound";
-import Wrapper from "./components/Utils/Wrapper";
+import { BrowserRouter, Switch } from "react-router-dom";
 
 import { Container } from "react-bootstrap";
 
-import bg1 from "./assets/images/bg1.jpg";
+import { imagesArray } from "./features/utils/imagesArray";
 
 function App() {
-  const state = useSelector((state) => state);
-  const { users, questions, loggedInUser } = state;
-  const loggedIn = state.loggedInUser.loggedIn;
+  const user = useSelector((state) => state.loggedInUser);
+
+  const randomiseBg = (max) => {
+    return Math.floor(Math.random() * max);
+  };
+
+  const bg = imagesArray[randomiseBg(imagesArray.length)];
 
   const backgroundImage = {
-    background: `radial-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8)),
-  url(${bg1})`,
-    backgroundPosition: "center",
-    backgroundRepeat: "no-repeat",
-    backgroundSize: "cover",
+    background: `radial-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8)) no-repeat center center / cover,
+  url(${bg}) no-repeat center center / cover`,
   };
+
+  // The below needs to be used to enable re-direction
+  // const { from } = location.state || { from: "/" };
 
   return (
     <BrowserRouter>
-      {loggedIn ? null : <Redirect to="/" />}
-      <Container fluid className="p-0 App h-100">
-        <NavBar {...state.loggedInUser} />
-        <Container
-          fluid
-          className="p-0 h-100 d-flex justify-content-center bg"
-          style={backgroundImage}
-        >
-          <Switch>
-            <Route path="/add">
-              <Wrapper Name={"New Question"} Component={<NewQuestion />} />
-            </Route>
-
-            <Route path="/leaderboard">
-              <Wrapper
-                Name={"Leaderboard"}
-                Component={<Leaderboard {...state} />}
-              />
-            </Route>
-
-            <Route exact path="/answer/:id">
-              <Wrapper
-                Name={"Answer"}
-                Component={<Answer data={questions} user={loggedInUser} />}
-              />
-            </Route>
-
-            <Route exact path="/questions/:id">
-              <Wrapper
-                Name={"Poll"}
-                Component={<Poll questions={questions} user={loggedInUser} />}
-              />
-            </Route>
-
-            <Route exact path="/">
-              {loggedIn ? (
-                <Wrapper Name={"Questions"} Component={<Home {...state} />} />
-              ) : (
-                <Wrapper
-                  Name={"Log In"}
-                  Component={<LoginModal users={users} />}
-                />
-              )}
-            </Route>
-            <Route path="/notfound">
-              <Wrapper Name={"Not Found"} Component={<NotFound />} />
-            </Route>
-          </Switch>
-        </Container>
+      <Container fluid className="p-0 h-100 App" style={backgroundImage}>
+        <NavBar {...user} />
+        <Switch>
+          <Routes />
+        </Switch>
       </Container>
     </BrowserRouter>
   );
@@ -95,20 +41,20 @@ function App() {
 
 export default App;
 
-// TODO: There is an error that occurs when a user attempts to navigate to a page using the search bar- refer to comments from udacity
-// TODO: Structure routing so that a 404 page or something similar will show when the user tries a route that doesn't exist. Note 'notfound' route path in App.js
-// TODO: prevent click into component when clicking on like at a top level component
-// TODO: Build out ranking functionality (as seen on leaderboard) into a component that can be used across pages (you will need to use a redux slice, I believe)
-// TODO:                           further to the above, add the user's ranking to the new question page
-// TODO: Add background randomiser
-// TODO: Add different hamburger image to nav button
-// TODO: Finish off Answer component (radio buttons, layout, possibly move form into a seperate component)
+//
+// TODO: You need to make session state persist after refresh for redux. You can use either sessionsstorage, redux-persist or localstorage
+// TODO: Create protected routes: https://joshtronic.com/2020/03/23/protected-routes-with-react-router-v5/ and https://ui.dev/react-router-tutorial
+// TODO: Add redux provider component to application, to manage store https://react-redux.js.org/api/provider - check whether you're passing store down properly
+// TODO: You may need to add some logic to the function that orders users on the rankings page
+// TODO: There is a bug when clicking on the 'like' button on the answered questions tab on the home page - fix it.
+// TODO: The background image doesn't enlarge to cover screen heights over h-100 - fix this.
 // TODO: Finish styling all components
 // TODO:                      Style Nav Links
 // TODO:                      Style select dropdown on login page
 // TODO:                      Logout button on Navbar
 // TODO:                      Avatar alignment on all card header instances
+// TODO: Finish off Answer component (radio buttons, layout, possibly move form into a seperate component)
 // TODO: Organise SCSS so as to minimise the code within scss files - put into component files as much as possible.
 // TODO: Compress image files
 // TODO: Upate npm packages via npm audit fix (do this before deployment)
-// TODO: There is logic in the Answers component that should probably be put into the relevant reducers
+// TODO: Refactor reducer 'like' logic in usersSlice and questionsSlice

@@ -2,10 +2,10 @@ import React from "react";
 
 // import { Link } from "react-router-dom";
 
-import CardHeader from "../CardComponents/CardHeader";
-import WouldYouText from "../CardComponents/WouldYouText";
-import PollAnswers from "../CardComponents/PollAnswers";
-import CardLikes from "../CardComponents/CardLikes";
+import CardHeader from "../cardComponents/CardHeader";
+import WouldYouText from "../cardComponents/WouldYouText";
+import PollAnswers from "../cardComponents/PollAnswers";
+import CardLikes from "../cardComponents/CardLikes";
 
 import { useParams } from "react-router-dom";
 

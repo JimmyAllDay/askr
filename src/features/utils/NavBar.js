@@ -1,10 +1,9 @@
 import React from "react";
 
-// import Avatar from "../CardComponents/Avatar";
 import NavButton from "./NavButton";
 
 import { useDispatch } from "react-redux";
-import { userLoggedOut } from "../../features/users/loggedInSlice";
+import { userLoggedOut } from "../users/loggedInSlice";
 
 import { NavLink } from "react-router-dom";
 
@@ -70,7 +69,7 @@ export default function NavBar(props) {
 
             <Col xs={8} md={2} className="p-0 d-flex">
               <div className="mx-auto d-flex">
-                <p className="my-auto ms-auto text-light d-none d-md-flex d-xl-none">
+                <p className="my-auto ms-auto text-primary d-none d-md-flex d-xl-none">
                   {`${firstName}`}
                 </p>
                 <p className="my-auto ms-auto text-light d-md-none d-xl-flex">{`Welcome, ${firstName}`}</p>

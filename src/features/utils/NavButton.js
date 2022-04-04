@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import { useDispatch } from "react-redux";
-import { userLoggedOut } from "../../features/users/loggedInSlice";
+import { userLoggedOut } from "../users/loggedInSlice";
 
 import { NavLink } from "react-router-dom";
 

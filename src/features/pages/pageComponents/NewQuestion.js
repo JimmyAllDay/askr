@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 
-import CardHeader from "../CardComponents/CardHeader";
-import WouldYouText from "../CardComponents/WouldYouText";
+import CardHeader from "../cardComponents/CardHeader";
+import WouldYouText from "../cardComponents/WouldYouText";
 
 import { useSelector, useDispatch } from "react-redux";
 import { nanoid } from "@reduxjs/toolkit";
-import { questionAdded } from "../../features/questions/questionsSlice.js";
-import { userUpdated } from "../../features/users/usersSlice.js";
+import { questionAdded } from "../../questions/questionsSlice";
+import { userUpdated } from "../../users/usersSlice";
 
 import { Redirect } from "react-router-dom";
 
