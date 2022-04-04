@@ -71,8 +71,8 @@ export const initialLoggedInState = {
   avatar: "",
 };
 
-export const initialUserState = [
-  {
+export const initialUserState = {
+  1: {
     id: "1",
     firstName: "James",
     lastName: "Marshall",
@@ -82,7 +82,7 @@ export const initialUserState = [
     totalLikes: [{ id: "1" }],
     totalPoints: 2,
   },
-  {
+  2: {
     id: "2",
     firstName: "Hugh",
     lastName: "McKenzie",
@@ -92,7 +92,7 @@ export const initialUserState = [
     totalLikes: [],
     totalPoints: 3,
   },
-  {
+  3: {
     id: "3",
     firstName: "Gemma",
     lastName: "Nicholas",
@@ -102,7 +102,7 @@ export const initialUserState = [
     totalLikes: [],
     totalPoints: 2,
   },
-  {
+  4: {
     id: "4",
     firstName: "Nick",
     lastName: "Lawrentin",
@@ -112,7 +112,7 @@ export const initialUserState = [
     totalLikes: [{ id: "1" }],
     totalPoints: 2,
   },
-  {
+  5: {
     id: "5",
     firstName: "Guest",
     lastName: "User",
@@ -122,4 +122,4 @@ export const initialUserState = [
     totalLikes: [],
     totalPoints: 0,
   },
-];
+};

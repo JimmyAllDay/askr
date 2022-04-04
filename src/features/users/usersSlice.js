@@ -1,7 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-// import avatar4 from "../../assets/images/avatar4.png";
-// import avatar1 from "../../assets/images/avatar1.png";
-// import avatar2 from "../../assets/images/avatar2.png";
 
 import { initialUserState } from "../utils/initialState";
 
@@ -11,9 +8,6 @@ const usersSlice = createSlice({
   name: "users",
   initialState,
   reducers: {
-    userAdded(state, action) {
-      state.push(action.payload);
-    },
     userUpdated(state, action) {
       //TODO: the below should be refactored
       state.forEach((user) => {

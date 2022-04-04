@@ -1,47 +1,35 @@
 import React from "react";
 import NavBar from "./features/utils/NavBar";
 import Routes from "./features/utils/Routes";
-
-import { useSelector } from "react-redux";
+import BgContainer from "./features/utils/BgContainer";
 
 import { BrowserRouter, Switch } from "react-router-dom";
 
-import { Container } from "react-bootstrap";
-
-import { imagesArray } from "./features/utils/initialState";
-
 function App() {
-  const user = useSelector((state) => state.loggedInUser);
-
-  const randomiseBg = (max) => {
-    return Math.floor(Math.random() * max);
-  };
-
-  const bg = imagesArray[randomiseBg(imagesArray.length)];
-
-  const backgroundImage = {
-    background: `radial-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8)) no-repeat center center / cover,
-  url(${bg}) no-repeat center center / cover`,
-  };
-
   return (
     <BrowserRouter>
-      <Container fluid className="p-0 h-100 App" style={backgroundImage}>
-        <NavBar {...user} />
+      <BgContainer>
+        <NavBar />
         <Switch>
           <Routes />
         </Switch>
-      </Container>
+      </BgContainer>
     </BrowserRouter>
   );
 }
 
 export default App;
 
-// TODO: Create protected routes: https://joshtronic.com/2020/03/23/protected-routes-with-react-router-v5/ and https://ui.dev/react-router-tutorial
+// TODO: Upate npm packages via npm audit fix (do this before deployment)
+
+// TODO: refactor slices and logic to have consistent data structures
+// TODO: Refactor reducer 'like' logic in usersSlice and questionsSlice
+// TODO: ensure logic for redirects is working, for example on the question answer comps
+// TODO: Build mock API with Miragejs - you will need to use Redux middlewear to make the api calls -  https://miragejs.com/docs/getting-started/introduction/
+// TODO: The background image doesn't enlarge to cover screen heights over h-100 - fix this.
 // TODO: You may need to add some logic to the function that orders users on the rankings page
 // TODO: There is a bug when clicking on the 'like' button on the answered questions tab on the home page - fix it.
-// TODO: The background image doesn't enlarge to cover screen heights over h-100 - fix this.
+
 // TODO: Finish styling all components
 // TODO:                      Style Nav Links
 // TODO:                      Style select dropdown on login page
@@ -50,5 +38,3 @@ export default App;
 // TODO: Finish off Answer component (radio buttons, layout, possibly move form into a seperate component)
 // TODO: Organise SCSS so as to minimise the code within scss files - put into component files as much as possible.
 // TODO: Compress image files
-// TODO: Upate npm packages via npm audit fix (do this before deployment)
-// TODO: Refactor reducer 'like' logic in usersSlice and questionsSlice
