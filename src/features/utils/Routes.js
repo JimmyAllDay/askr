@@ -15,30 +15,16 @@ import { useSelector } from "react-redux";
 import { Switch, Route } from "react-router-dom";
 
 export default function Routes() {
-  const state = useSelector((state) => state);
-  const { users, questions, loggedInUser } = state;
-  const loggedIn = state.loggedInUser.loggedIn;
-
   return (
     <Switch>
       <PrivateRoute
         path="/answer/:id"
-        component={() => (
-          <Wrapper
-            name={"Answer"}
-            component={<Answer data={questions} user={loggedInUser} />}
-          />
-        )}
+        component={() => <Wrapper name={"Answer"} component={<Answer />} />}
       />
 
       <PrivateRoute
         path="/questions/:id"
-        component={() => (
-          <Wrapper
-            name={"Poll"}
-            component={<Poll questions={questions} user={loggedInUser} />}
-          />
-        )}
+        component={() => <Wrapper name={"Poll"} component={<Poll />} />}
       />
 
       <PrivateRoute
@@ -51,26 +37,18 @@ export default function Routes() {
       <PrivateRoute
         path="/leaderboard"
         component={() => (
-          <Wrapper
-            name={"Leaderboard"}
-            component={<Leaderboard {...state} />}
-          />
+          <Wrapper name={"Leaderboard"} component={<Leaderboard />} />
         )}
       />
 
       <PrivateRoute
         exact
         path="/"
-        component={() => (
-          <Wrapper name={"Questions"} component={<Home {...state} />} />
-        )}
+        component={() => <Wrapper name={"Questions"} component={<Home />} />}
       />
 
       <Route exact path="/login">
-        <Wrapper
-          name={"Log In"}
-          component={<LoginModal loggedIn={loggedIn} users={users} />}
-        />
+        <Wrapper name={"Log In"} component={<LoginModal />} />
       </Route>
 
       <PrivateRoute

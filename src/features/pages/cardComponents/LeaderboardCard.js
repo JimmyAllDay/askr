@@ -5,10 +5,8 @@ import { Container, Col } from "react-bootstrap";
 export default function LeaderboardCard(props) {
   const { questionsAsked, questionsAnswered, totalLikes } = props;
 
-  const likes = totalLikes.length > 0 ? totalLikes.length : 0;
-
   function score() {
-    return questionsAsked + questionsAnswered + likes;
+    return questionsAsked + questionsAnswered + totalLikes;
   }
 
   return (
@@ -23,8 +21,8 @@ export default function LeaderboardCard(props) {
           <p className="my-auto ms-2">{questionsAnswered}</p>
         </div>
         <div className="d-flex">
-          <p className="my-auto">Question Likes:</p>
-          <p className="my-auto ms-2">{likes}</p>
+          <p className="my-auto">Likes Received:</p>
+          <p className="my-auto ms-2">{totalLikes}</p>
         </div>
       </Col>
       <Col className="d-flex">

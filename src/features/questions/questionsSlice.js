@@ -1,49 +1,43 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { initialQuestionState } from "../utils/initialState";
+import { initialQuestionsState } from "../utils/initialState";
 
-const initialState = initialQuestionState;
+const initialState = initialQuestionsState;
 
 const questionsSlice = createSlice({
   name: "questions",
   initialState,
   reducers: {
-    questionUpdated(state, action) {
-      state.forEach((question) => {
-        if (question.key === action.payload.key) {
-          question.answers = action.payload.answers;
-        }
-      });
-      return state;
-    },
     questionAdded(state, action) {
-      state.push(action.payload);
+      return {
+        ...state,
+        questions: {
+          ...state.questions,
+          ...action.payload,
+        },
+      };
+    },
+    questionAnswered(state, action) {
+      const { key, userId, answer } = action.payload;
+      state.questions[key].answers[userId] = answer;
     },
     questionLikesUpdated(state, action) {
-      //TODO: refactor
-      return state.map((questionObj) => {
-        if (questionObj.key === action.payload.key) {
-          let newLikesArr = [];
-          const checkLike = questionObj.likes.some(
-            (like) => like.id === action.payload.like.id
-          );
-          if (checkLike) {
-            newLikesArr = questionObj.likes.filter(
-              (like) => like.id !== action.payload.like.id
-            );
-          } else {
-            newLikesArr = [...questionObj.likes, action.payload.like];
-          }
-          return { ...questionObj, likes: [...newLikesArr] };
-        } else {
-          return questionObj;
-        }
-      });
+      const { key, like } = action.payload;
+      const filterLikes = state.questions[key].likes.filter(
+        (id) => id !== like
+      );
+      state.questions[key].likes.includes(like)
+        ? (state.questions[key].likes = filterLikes)
+        : state.questions[key].likes.push(like);
     },
   },
 });
 
-export const { questionUpdated, questionAdded, questionLikesUpdated } =
+export const selectQuestions = ({ questions }) => questions.questions;
+export const selectQuestionsArr = ({ questions }) =>
+  Object.values(questions.questions);
+
+export const { questionAdded, questionAnswered, questionLikesUpdated } =
   questionsSlice.actions;
 
 export default questionsSlice.reducer;

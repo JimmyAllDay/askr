@@ -1,22 +1,23 @@
 import React from "react";
-
-// import { Link } from "react-router-dom";
-
 import CardHeader from "../cardComponents/CardHeader";
 import WouldYouText from "../cardComponents/WouldYouText";
 import PollAnswers from "../cardComponents/PollAnswers";
 import CardLikes from "../cardComponents/CardLikes";
 
+import { useSelector } from "react-redux";
+import { selectQuestions } from "../../questions/questionsSlice";
+import { selectLoggedInUser } from "../../users/loggedInSlice";
+
 import { useParams } from "react-router-dom";
 
 import { Container } from "react-bootstrap";
 
-function Poll(props) {
+function Poll() {
+  const questions = useSelector(selectQuestions);
+  const user = useSelector(selectLoggedInUser);
   const { id } = useParams();
-  const { questions, user } = props;
   const userId = user.id;
-  const data = questions.filter((question) => question.key === id)[0];
-  const answersArray = data.answers;
+  const data = questions[id];
 
   return (
     <Container className="p-0 bg-dark text-light">
@@ -36,7 +37,7 @@ function Poll(props) {
 
       <WouldYouText />
 
-      <PollAnswers data={data} answersArray={answersArray} userId={userId} />
+      <PollAnswers data={data} userId={userId} />
     </Container>
   );
 }

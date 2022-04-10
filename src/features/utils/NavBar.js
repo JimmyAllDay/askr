@@ -3,15 +3,14 @@ import React from "react";
 import NavButton from "./NavButton";
 
 import { useSelector, useDispatch } from "react-redux";
-
-import { userLoggedOut } from "../users/loggedInSlice";
+import { userLoggedOut, selectLoggedInUser } from "../users/loggedInSlice";
 
 import { NavLink } from "react-router-dom";
 
 import { Container, Navbar, Nav, Button, Col } from "react-bootstrap";
 
 export default function NavBar() {
-  const user = useSelector((state) => state.loggedInUser);
+  const user = useSelector(selectLoggedInUser);
   const { loggedIn, firstName, avatar } = user;
 
   const dispatch = useDispatch();

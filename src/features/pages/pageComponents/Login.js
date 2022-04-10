@@ -9,31 +9,38 @@ import { Redirect, useLocation } from "react-router-dom";
 import Select from "react-select";
 import AlertModal from "../../utils/AlertModal";
 
-export default function LoginModal({ users, loggedIn }) {
-  const [user, setUser] = useState("");
-  const [showAlert, setShowAlert] = useState(false);
+import { useSelector } from "react-redux";
+import { selectUsersArr } from "../../users/usersSlice";
+import { selectLoggedInUser } from "../../users/loggedInSlice";
+
+export default function LoginModal() {
+  const users = useSelector(selectUsersArr);
+  const loggedIn = useSelector(selectLoggedInUser);
 
   const { state } = useLocation();
 
+  const [user, setUser] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
+
+  const alertTitle = "User Log In";
+  const alertMessage = "Please select a user to log in";
   const handleCloseAlert = () => {
     return setShowAlert(false);
   };
-  const alertTitle = "User Log In";
-  const alertMessage = "Please select a user to log in";
 
-  const dispatch = useDispatch();
-
-  const renderedUsers2 = users.map((user) => ({
+  const renderedUsers = users.map((user) => ({
     label: `${user.firstName} ${user.lastName}`,
-    value: `${user.id}`,
+    value: user.id,
     image: user.avatar,
   }));
 
-  const onUserChanged = (person) => {
-    const userId = person.value;
+  const onUserChanged = (e) => {
+    const userId = e.value;
     const user = users.find((u) => u.id === userId);
     setUser(user);
   };
+
+  const dispatch = useDispatch();
 
   const logInUser = () => {
     if (!user) {
@@ -89,7 +96,7 @@ export default function LoginModal({ users, loggedIn }) {
 
       <Col xs={8} sm={6} className="d-flex flex-column">
         <Select
-          options={renderedUsers2}
+          options={renderedUsers}
           className="text-dark my-4"
           formatOptionLabel={(user) => (
             <div className="d-flex">

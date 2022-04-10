@@ -4,26 +4,32 @@ import CardHeader from "../cardComponents/CardHeader";
 import Awards from "../cardComponents/Awards";
 import LeaderboardCard from "../cardComponents/LeaderboardCard";
 
+import { useSelector } from "react-redux";
+import { getUserPointsArr } from "../../users/usersSlice";
+
 import { Container } from "react-bootstrap";
 
-function Leaderboard(props) {
-  const { users } = props;
-  const usersArray = [...users];
-  const sortedUsers = usersArray.sort((a, b) => {
+function Leaderboard() {
+  const users = useSelector(getUserPointsArr);
+
+  //Sort Users into ranking
+  const sortedUsers = users.sort((a, b) => {
     return b.totalPoints - a.totalPoints;
   });
 
   const mapRankings = sortedUsers.map((user, i) => {
+    const ranking = i + 1;
     const {
       id,
       firstName,
       lastName,
       avatar,
-      questionsAsked,
-      questionsAnswered,
-      totalLikes,
+      questions,
+      answers,
+      likes,
+      totalPoints,
     } = user;
-    const ranking = i + 1;
+
     return (
       <Container fluid key={id} className="p-0 bg-dark text-light mb-1">
         <CardHeader
@@ -32,11 +38,11 @@ function Leaderboard(props) {
           text={null}
           subComp={<Awards ranking={ranking} />}
         />
-
         <LeaderboardCard
-          questionsAsked={questionsAsked}
-          questionsAnswered={questionsAnswered}
-          totalLikes={totalLikes}
+          questionsAsked={questions}
+          questionsAnswered={answers}
+          totalLikes={likes}
+          totalPoints={totalPoints}
         />
       </Container>
     );

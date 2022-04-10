@@ -9,25 +9,35 @@ import { Container, Col } from "react-bootstrap";
 import WouldYouText from "./WouldYouText";
 
 export default function QuestionCard(props) {
-  const { avatar, name, askerId, likes, question, user, answers, id } = props;
+  const {
+    avatar,
+    name,
+    askerId,
+    likes,
+    question,
+    user,
+    //answers,
+    link,
+    id,
+  } = props;
 
   const userId = Number(user.id);
 
-  function sortLinks(e) {
-    e.stopPropagation;
-    const userID = props.user.id;
-    let answered = false;
-    answers.find((answer) => {
-      if (answer.id == userID) {
-        answered = true;
-      }
-    });
-    return answered === true ? `/questions/${id}` : `/answer/${id}`;
-  }
+  // function sortLinks(e) {
+  //   e.stopPropagation;
+  //   const userID = props.user.id;
+  //   let answered = false;
+  //   answers.find((answer) => {
+  //     if (answer.id == userID) {
+  //       answered = true;
+  //     }
+  //   });
+  //   return answered === true ? `/questions/${id}` : `/answer/${id}`;
+  // }
 
   return (
     <Link
-      to={(e) => sortLinks(e)}
+      to={link}
       className="text-light"
       onMouseDown={(e) => e.stopPropagation}
       style={{ textDecoration: "none" }}

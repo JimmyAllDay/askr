@@ -6,29 +6,22 @@ import { Icon } from "@iconify/react";
 
 import { useDispatch } from "react-redux";
 import { questionLikesUpdated } from "../../questions/questionsSlice";
-import { userLikesUpdated } from "../../users/usersSlice";
 
 export default function CardLikes({ likes, userId, askerId, questionId }) {
   const dispatch = useDispatch();
-  askerId = askerId.toString();
 
   // Count number of likes for this card
   const likeCount = (likes) => likes.length;
 
   // Increment likes
   const updateLikes = () => {
-    dispatch(
-      questionLikesUpdated({
-        key: `${questionId}`,
-        like: { id: `${userId}` },
-      })
-    );
-    dispatch(
-      userLikesUpdated({
-        askerId: `${askerId}`,
-        like: { id: `${userId}` },
-      })
-    );
+    userId !== askerId &&
+      dispatch(
+        questionLikesUpdated({
+          key: questionId,
+          like: userId,
+        })
+      );
   };
 
   return (
@@ -39,6 +32,7 @@ export default function CardLikes({ likes, userId, askerId, questionId }) {
           e.preventDefault();
           updateLikes();
         }}
+        onMouseOver={null}
         style={{ cursor: "pointer" }}
       >
         <p className="my-auto ms-auto">{likeCount(likes)}</p>
@@ -47,13 +41,17 @@ export default function CardLikes({ likes, userId, askerId, questionId }) {
             <Icon
               icon="ant-design:heart-filled"
               className="my-auto"
-              style={{ color: "tomato" }}
+              style={
+                userId === askerId ? { color: "grey" } : { color: "tomato" }
+              }
             />
           ) : (
             <Icon
               icon="ant-design:heart-outlined"
               className="my-auto"
-              style={{ color: "tomato" }}
+              style={
+                userId === askerId ? { color: "grey" } : { color: "tomato" }
+              }
             />
           )}
         </div>

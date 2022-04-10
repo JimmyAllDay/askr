@@ -1,22 +1,24 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
+import CardHeader from "../cardComponents/CardHeader";
+import CardLikes from "../cardComponents/CardLikes";
+import WouldYouText from "../cardComponents/WouldYouText";
 
-import { useDispatch } from "react-redux";
-import { questionUpdated } from "../../questions/questionsSlice";
-import { userUpdated } from "../../users/usersSlice";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  questionAnswered,
+  selectQuestions,
+} from "../../questions/questionsSlice";
+import { selectLoggedInUser } from "../../users/loggedInSlice";
 
 import { useParams, Redirect } from "react-router-dom";
 
 import { Container, Col, Button } from "react-bootstrap";
 
-import CardHeader from "../cardComponents/CardHeader";
-
-import CardLikes from "../cardComponents/CardLikes";
-import WouldYouText from "../cardComponents/WouldYouText";
-
-function Answer(props) {
-  const { user } = props;
+function Answer() {
+  const questions = useSelector(selectQuestions);
+  const user = useSelector(selectLoggedInUser);
   const { id } = useParams();
-  const data = props.data.filter((question) => question.key === id)[0];
+  const data = questions[id];
 
   const dispatch = useDispatch();
 
@@ -24,30 +26,15 @@ function Answer(props) {
   const [redirect, setRedirect] = useState(false);
 
   const formStateHandler = (e) => setAnswer(e.target.value);
-  // TODO: this logic should be moved into the reducer
-  const submitForm = () => {
-    if (answer != "") {
-      const answers = data.answers;
-      const userAnswer = { id: user.id, answer: answer };
-      const newAnswers =
-        answers[0].id == "" ? [userAnswer] : [...answers, userAnswer];
-      dispatch(
-        questionUpdated({
-          key: data.key,
-          answers: newAnswers,
-        })
-      );
-      dispatch(
-        userUpdated({
-          id: user.id,
-          questionsAsked: 0,
-          questionsAnswered: 1,
-          totalPoints: 1,
-        })
-      );
+  // const forceRedirect = useCallback(() => setRedirect(true), []);
 
+  const submitForm = () => {
+    if (answer !== "") {
+      const userId = user.id;
+      dispatch(questionAnswered({ key: id, userId: userId, answer: answer }));
       setAnswer("");
       setRedirect(true);
+      // forceRedirect();
     }
   };
 
@@ -80,10 +67,10 @@ function Answer(props) {
                     className="me-3 mt-4"
                     name="q-answer"
                     type="radio"
-                    value={data.questionOptionA}
+                    value={"A"}
                   />
                   <label>
-                    <h5>{data.questionOptionA}</h5>
+                    <h5>{data.A}</h5>
                   </label>
                 </div>
                 <div className="align-self-center">
@@ -94,11 +81,11 @@ function Answer(props) {
                     className="me-3 mt-2"
                     name="q-answer"
                     type="radio"
-                    value={data.questionOptionB}
+                    value={"B"}
                   />
 
                   <label>
-                    <h5>{data.questionOptionB}</h5>
+                    <h5>{data.B}</h5>
                   </label>
                 </div>
               </div>

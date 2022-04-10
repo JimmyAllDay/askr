@@ -7,42 +7,29 @@ const initialState = initialUserState;
 const usersSlice = createSlice({
   name: "users",
   initialState,
-  reducers: {
-    userUpdated(state, action) {
-      //TODO: the below should be refactored
-      state.forEach((user) => {
-        if (user.id === action.payload.id) {
-          user.questionsAsked = user.questionsAsked +=
-            action.payload.questionsAsked;
-          user.questionsAnswered = user.questionsAnswered +=
-            action.payload.questionsAnswered;
-          user.totalPoints = user.totalPoints += action.payload.totalPoints;
-        }
-      });
-    },
-    userLikesUpdated(state, action) {
-      return state.map((userObj) => {
-        if (userObj.id === action.payload.askerId) {
-          let newLikesArr = [];
-          const checkLike = userObj.totalLikes.some(
-            (like) => like.id === action.payload.like.id
-          );
-          if (checkLike) {
-            newLikesArr = userObj.totalLikes.filter(
-              (like) => like.id !== action.payload.like.id
-            );
-          } else {
-            newLikesArr = [...userObj.totalLikes, action.payload.like];
-          }
-          return { ...userObj, totalLikes: [...newLikesArr] };
-        } else {
-          return userObj;
-        }
-      });
-    },
-  },
+  reducers: {},
 });
 
-export const { userAdded, userUpdated, userLikesUpdated } = usersSlice.actions;
+export const selectUsers = ({ users }) => users.users;
+
+export const selectUsersArr = ({ users }) => Object.values(users.users);
+
+export const getUserPointsArr = (state) =>
+  Object.values(state.users.users).map((user) => {
+    let [questions, answers, likes, totalPoints] = [0, 0, 0, 0];
+    Object.values(state.questions.questions).forEach((question) => {
+      if (question.askerId === user.id) {
+        questions += 1;
+        likes += question.likes.length;
+      }
+      if (question.answers[user.id]) {
+        answers += 1;
+      }
+    });
+    totalPoints = questions + answers + likes;
+    return (user = { ...user, questions, answers, likes, totalPoints });
+  });
+
+export const { userUpdated, userLikesUpdated } = usersSlice.actions;
 
 export default usersSlice.reducer;

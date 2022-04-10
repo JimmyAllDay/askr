@@ -1,5 +1,5 @@
 /* eslint no-unused-vars: "off" */
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createSelector } from "@reduxjs/toolkit";
 
 import { initialLoggedInState } from "../utils/initialState";
 
@@ -23,6 +23,8 @@ const logInSlice = createSlice({
     },
   },
 });
+
+export const selectLoggedInUser = ({ loggedIn }) => loggedIn;
 
 export const { userLoggedIn, userLoggedOut } = logInSlice.actions;
 

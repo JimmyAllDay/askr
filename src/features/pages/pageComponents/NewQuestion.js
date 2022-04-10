@@ -6,14 +6,15 @@ import WouldYouText from "../cardComponents/WouldYouText";
 import { useSelector, useDispatch } from "react-redux";
 import { nanoid } from "@reduxjs/toolkit";
 import { questionAdded } from "../../questions/questionsSlice";
-import { userUpdated } from "../../users/usersSlice";
+
+import { selectLoggedInUser } from "../../users/loggedInSlice";
 
 import { Redirect } from "react-router-dom";
 
 import { Container, Button } from "react-bootstrap";
 
 function NewQuestion() {
-  const user = useSelector((state) => state.loggedInUser);
+  const user = useSelector(selectLoggedInUser);
   const { avatar, id, firstName } = user;
   const dispatch = useDispatch();
 
@@ -32,27 +33,20 @@ function NewQuestion() {
     const date = new Date().toString();
 
     if (optionA !== "" && optionB !== "") {
-      dispatch(
-        questionAdded({
-          key: nanoid(),
-          dateAsked: date,
-          asker: `${loggedInUser.firstName} ${loggedInUser.lastName}`,
-          askerId: id,
-          avatar: avatar,
-          questionOptionA: optionA,
-          questionOptionB: optionB,
-          answers: [{ id: "", answer: "" }],
-          likes: [],
-        })
-      );
-      dispatch(
-        userUpdated({
-          id: id,
-          questionsAsked: 1,
-          questionsAnswered: 0,
-          totalPoints: 1,
-        })
-      );
+      const keyName = nanoid();
+      const newQuestion = {};
+      newQuestion[keyName] = {
+        questionId: `${keyName}`,
+        dateAsked: date,
+        asker: `${loggedInUser.firstName} ${loggedInUser.lastName}`,
+        askerId: id,
+        avatar: avatar,
+        A: optionA,
+        B: optionB,
+        answers: {},
+        likes: [],
+      };
+      dispatch(questionAdded(newQuestion));
       setOptionA("");
       setOptionB("");
       setRedirect(true);

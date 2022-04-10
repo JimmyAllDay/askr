@@ -5,61 +5,68 @@ import HomeButtonGroup from "../../utils/HomeButtonGroup";
 
 import { Container } from "react-bootstrap";
 
-function Home(props) {
-  const { questions, loggedInUser } = props;
-  const [answeredQs, setAnsweredQs] = useState(false);
+import { useSelector } from "react-redux";
+import { selectUsers } from "./../../users/usersSlice";
+import { selectLoggedInUser } from "./../../users/loggedInSlice";
+import { selectQuestionsArr } from "./../../questions/questionsSlice";
 
+function Home() {
+  //State data
+  const user = useSelector(selectLoggedInUser);
+  const allUsers = useSelector(selectUsers);
+  const questionsArr = useSelector(selectQuestionsArr);
+
+  //Toggle Home Button Group
+  const [answeredQs, setAnsweredQs] = useState(false);
   const qsHandler = () => {
     return setAnsweredQs(!answeredQs);
   };
 
-  const questionsData = questions.slice().sort(function (a, b) {
+  //Sort questions data in reverse date order
+  const questionsData = questionsArr.slice().sort((a, b) => {
     return b.dateAsked.localeCompare(a.dateAsked);
   });
-  const userData = loggedInUser;
-  const userId = userData.id;
 
-  const answeredQuestions = [];
-  questionsData.forEach((question) => {
-    question.answers.forEach((answer) => {
-      if (answer.id == userId) {
-        answeredQuestions.push(question);
-      }
-    });
+  //Sort questions into answered / unanswered
+  const [answered, unanswered] = [[], []];
+  questionsData.map((question) => {
+    if (question.answers[user.id]) {
+      answered.push(question);
+    } else {
+      unanswered.push(question);
+    }
   });
 
-  const mappedAnswered = answeredQuestions.map((question) => {
+  const mappedAnswered = answered.map((question) => {
     return (
       <QuestionCard
-        user={userData}
-        key={question.key}
-        id={question.key}
+        user={user}
+        key={question.questionId}
+        id={question.questionId}
         name={question.asker}
         askerId={question.askerId}
-        question={question.questionOptionA}
+        question={question.A}
         answers={question.answers}
         avatar={question.avatar}
         likes={question.likes}
+        link={`/questions/${question.questionId}`}
       />
     );
   });
 
-  const unAnsweredQuestions = questionsData.filter(
-    (question) => !answeredQuestions.includes(question)
-  );
-
-  const mappedUnanswered = unAnsweredQuestions.map((question) => {
+  const mappedUnanswered = unanswered.map((question) => {
     return (
       <QuestionCard
-        user={userData}
-        key={question.key}
-        id={question.key}
+        user={user}
+        key={question.questionId}
+        id={question.questionId}
         name={question.asker}
         askerId={question.askerId}
-        question={question.questionOptionA}
+        question={question.A}
         answers={question.answers}
         avatar={question.avatar}
         likes={question.likes}
+        link={`/answer/${question.questionId}`}
       />
     );
   });
