@@ -63,7 +63,7 @@ export default function NavBar() {
                   activeClassName="active"
                   className="nav-link text-light"
                 >
-                  Leader Board
+                  Leaderboard
                 </NavLink>
               </Nav.Item>
             </Col>
@@ -94,7 +94,7 @@ export default function NavBar() {
                 onClick={() => logOut()}
               >
                 <p
-                  className="m-0 my-auto text-info"
+                  className="m-0 my-auto text-info nav-button-text"
                   style={{ fontSize: "0.9em" }}
                 >
                   Log Out

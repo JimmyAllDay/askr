@@ -31,7 +31,11 @@ function Leaderboard() {
     } = user;
 
     return (
-      <Container fluid key={id} className="p-0 bg-dark text-light mb-1">
+      <Container
+        fluid
+        key={id}
+        className="p-0 blur-bg text-light mb-1 rounded-3"
+      >
         <CardHeader
           avatar={avatar}
           name={`${firstName} ${lastName}`}
@@ -39,9 +43,9 @@ function Leaderboard() {
           subComp={<Awards ranking={ranking} />}
         />
         <LeaderboardCard
-          questionsAsked={questions}
-          questionsAnswered={answers}
-          totalLikes={likes}
+          questions={questions}
+          answers={answers}
+          likes={likes}
           totalPoints={totalPoints}
         />
       </Container>

@@ -15,8 +15,9 @@ $theme-colors: (
 .btn-outline-info {
   color: var(info) !important;
 }
-.btn-outline-info:hover {
-  color: var(light) !important;
+
+.nav-button-text:hover {
+  color: white !important;
 }
 
 .navbar-toggler-icon {

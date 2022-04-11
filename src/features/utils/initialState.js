@@ -31,7 +31,7 @@ export const initialQuestionsState = {
       asker: "Hugh McKenzie",
       askerId: 2,
       avatar: avatars[1],
-      A: "Eat a bean",
+      A: "Eat beans",
       B: "Do a backflip",
       answers: {
         2: "B",
@@ -115,43 +115,3 @@ export const initialUserState = {
   },
   ids: [1, 2, 3, 4, 5],
 };
-
-// const state = (state) => state;
-// const users = state.users.ids;
-// const usersObjs = state.users.users;
-// const questions = state.questions.questions;
-// const questionsArray = Object.values(questions);
-
-//Get number of likes
-// const countLikesObj = users.reduce((o, key) => ({ ...o, [key]: 0 }), {});
-// questionsArray.map((question) => {
-//   return (countLikesObj[question.askerId] += question.likes.length);
-// });
-
-// //Get number of questions
-// const countQuestionsObj = users.reduce((o, key) => ({ ...o, [key]: 0 }), {});
-// questionsArray.map((question) => {
-//   return (countQuestionsObj[question.askerId] += 1);
-// });
-
-// //Get number of answers
-// const countAnswersObj = users.reduce((o, key) => ({ ...o, [key]: 0 }), {});
-// questionsArray.map((question) => {
-//   for (let key in question.answers) {
-//     countAnswersObj[key] += 1;
-//   }
-// });
-
-// for (let key in usersObjs) {
-//   for (let keyAns in countAnswersObj) {
-//     key === keyAns ? (usersObjs[key].answers = countAnswersObj[key]) : null;
-//   }
-//   for (let keyQs in countQuestionsObj) {
-//     key === keyQs ? (usersObjs[key].questions = countQuestionsObj[key]) : null;
-//   }
-//   for (let keyLis in countLikesObj) {
-//     key === keyLis ? (usersObjs[key].likes = countLikesObj[key]) : null;
-//   }
-//   usersObjs[key].totalPoints =
-//     usersObjs[key].answers + usersObjs[key].questions + usersObjs[key].likes;
-// }

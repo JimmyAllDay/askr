@@ -8,7 +8,7 @@ export default function CardHeader({ avatar, name, text, subComp }) {
   return (
     <Container fluid className="p-0">
       <Row className="d-flex mx-auto w-100">
-        <Col xs={2} className="p-0 pt-1 me-auto">
+        <Col xs={2} className="p-0 pt-2 me-auto pe-3">
           {avatar && <Avatar avatar={avatar} />}
         </Col>
         <Col xs={8} className="d-flex flex-column align-items-center pt-2">

@@ -20,7 +20,7 @@ function Poll() {
   const data = questions[id];
 
   return (
-    <Container className="p-0 bg-dark text-light">
+    <Container className="p-0 blur-bg text-light rounded-3">
       <CardHeader
         avatar={data.avatar}
         name={data.asker}

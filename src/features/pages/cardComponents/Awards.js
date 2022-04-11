@@ -44,11 +44,14 @@ export default function Awards({ ranking }) {
       case 3:
         return bronze;
       default:
-        return <p>{`${position}.`}</p>;
+        return <h5 className="text-info">{`${position}th`}</h5>;
     }
   };
   return (
-    <Container fluid className="p-0 border ms-auto">
+    <Container
+      fluid
+      className="p-0 d-flex flex-column align-items-end mt-1 pe-1"
+    >
       {renderAward(ranking)}
     </Container>
   );

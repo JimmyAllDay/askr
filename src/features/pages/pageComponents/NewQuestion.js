@@ -54,7 +54,7 @@ function NewQuestion() {
   };
 
   return (
-    <Container fluid className="p-0 border border-dark p-2">
+    <Container fluid className="p-0 blur-bg rounded-3 text-light">
       {redirect && <Redirect to="/" />}
       <CardHeader
         avatar={avatar}
@@ -66,21 +66,21 @@ function NewQuestion() {
       <div className="d-flex flex-column mt-2">
         <WouldYouText />
         <input
-          className="new-q-input mt-2"
+          className="new-q-input mt-2 mx-3"
           placeholder={placeholder.a}
           onChange={(e) => handleChangeOptionA(e)}
           value={optionA}
         />
         <h6 className="my-2 align-self-center">or...</h6>
         <input
-          className="new-q-input"
+          className="new-q-input mx-3"
           placeholder={placeholder.b}
           onChange={(e) => handleChangeOptionB(e)}
           value={optionB}
         />
 
         <Button
-          className="global-button mx-auto mt-2"
+          className="global-button mx-auto mt-3 mb-2"
           onClick={() => createNewQuestion(user)}
         >
           Submit

@@ -21,7 +21,7 @@ export default function PollAnswers({ data, userId }) {
   const userAnswer = data[answers[userId]];
 
   return (
-    <Container fluid className="d-flex flex-column px-1">
+    <Container fluid className="d-flex flex-column px-1 pt-4">
       <Row className="p-0 m-0">
         <Col xs={5} className="d-flex flex-column align-items-center">
           <h5 className="my-auto text-center">{answerA}</h5>
@@ -33,12 +33,14 @@ export default function PollAnswers({ data, userId }) {
           <h5 className="my-auto text-center">{answerB}</h5>
         </Col>
       </Row>
-      <Row className="d-flex py-4 m-0 mt-2">
-        <h6>You answered:</h6>
-        <h5 className="ms-5 text-primary">{`${userAnswer}`}</h5>
+      <Row className="py-2 m-0 mt-4">
+        <Col className="d-flex flex-column">
+          <h6 className="me-auto">You answered:</h6>
+          <h2 className="text-primary mx-auto">{`${userAnswer}`}</h2>
+        </Col>
       </Row>
 
-      <Row className="p-0 m-0 pt-3 d-flex">
+      <Row className="p-0 m-0 pt-2 d-flex">
         <h6 className="my-auto">Others answered:</h6>
       </Row>
 

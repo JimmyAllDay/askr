@@ -59,7 +59,7 @@ export default function LoginModal() {
     }
   };
 
-  if (loggedIn === true) {
+  if (loggedIn.loggedIn === true) {
     return <Redirect to={state?.from || "/"} />;
   }
 

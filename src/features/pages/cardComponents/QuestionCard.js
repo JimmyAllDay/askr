@@ -23,18 +23,6 @@ export default function QuestionCard(props) {
 
   const userId = Number(user.id);
 
-  // function sortLinks(e) {
-  //   e.stopPropagation;
-  //   const userID = props.user.id;
-  //   let answered = false;
-  //   answers.find((answer) => {
-  //     if (answer.id == userID) {
-  //       answered = true;
-  //     }
-  //   });
-  //   return answered === true ? `/questions/${id}` : `/answer/${id}`;
-  // }
-
   return (
     <Link
       to={link}
@@ -59,7 +47,6 @@ export default function QuestionCard(props) {
 
         <Col className="d-flex flex-column">
           <WouldYouText />
-
           <h3 className="align-self-center text-primary">{question}</h3>
           <h6 className="align-self-center text-primary">or...</h6>
         </Col>

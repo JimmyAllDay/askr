@@ -42,7 +42,9 @@ export default function CardLikes({ likes, userId, askerId, questionId }) {
               icon="ant-design:heart-filled"
               className="my-auto"
               style={
-                userId === askerId ? { color: "grey" } : { color: "tomato" }
+                userId === askerId
+                  ? { color: "rgb(175, 72, 53)" }
+                  : { color: "tomato" }
               }
             />
           ) : (
@@ -50,7 +52,9 @@ export default function CardLikes({ likes, userId, askerId, questionId }) {
               icon="ant-design:heart-outlined"
               className="my-auto"
               style={
-                userId === askerId ? { color: "grey" } : { color: "tomato" }
+                userId === askerId
+                  ? { color: "rgb(175, 72, 53)" }
+                  : { color: "tomato" }
               }
             />
           )}
