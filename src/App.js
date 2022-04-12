@@ -4,18 +4,18 @@ import Routes from "./features/utils/Routes";
 import BgContainer from "./features/utils/BgContainer";
 import Wrapper from "./features/utils/Wrapper";
 
-import { BrowserRouter, Switch } from "react-router-dom";
+import { HashRouter, Switch } from "react-router-dom";
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <BgContainer>
         <NavBar />
         <Switch>
           <Wrapper component={<Routes />} />
         </Switch>
       </BgContainer>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
